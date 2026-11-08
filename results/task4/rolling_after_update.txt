@@ -1,0 +1,9 @@
+HTTP/1.1 200 OK
+Content-Length: 68
+Content-Type: application/json
+Date: Sun, 08 Nov 2026 11:44:03 GMT
+Server: uvicorn
+X-Model-Version: v2
+X-Served-By: cmdparser-5b5f59d654-psqfb
+
+{"intent":"datetime_query","date":null,"time":null,"place":"toledo"}

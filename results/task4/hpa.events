@@ -1,0 +1,6 @@
+11:52:54 EVENT /home/runner/work/cloud-computing-assignment/cloud-computing-assignment/results/task4/hpa phase 1: idle, waiting for the HPA to scale down to 1
+11:54:25 EVENT /home/runner/work/cloud-computing-assignment/cloud-computing-assignment/results/task4/hpa replicas=1
+11:54:55 EVENT /home/runner/work/cloud-computing-assignment/cloud-computing-assignment/results/task4/hpa phase 2: load (4 users) for 5 minutes
+11:55:26 EVENT /home/runner/work/cloud-computing-assignment/cloud-computing-assignment/results/task4/hpa scaled up: ready replicas=2
+11:59:56 EVENT /home/runner/work/cloud-computing-assignment/cloud-computing-assignment/results/task4/hpa phase 3: load stopped, waiting for the scale-down to 1
+12:01:37 EVENT /home/runner/work/cloud-computing-assignment/cloud-computing-assignment/results/task4/hpa replicas=1

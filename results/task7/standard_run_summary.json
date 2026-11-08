@@ -1,0 +1,11 @@
+{
+  "requests": 557,
+  "failures": 0,
+  "successes": 557,
+  "failure_rate_percent": 0.0,
+  "p50_ms": 850.0,
+  "p95_ms": 1000.0,
+  "p99_ms": 1100.0,
+  "max_ms": 1147.8934650000383,
+  "requests_per_second": 4.681
+}

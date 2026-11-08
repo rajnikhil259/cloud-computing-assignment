@@ -1,0 +1,23 @@
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+2026-11-08 11:38:50,148 INFO starting: MODEL_URI=s3://models/v1/ MODEL_VERSION=v1 S3_ENDPOINT=http://seaweedfs.data.svc.cluster.local:8333 MAX_NEW_TOKENS=64 FAULT_INJECT=0
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-11-08 11:38:50,593 INFO Found credentials in environment variables.
+2026-11-08 11:38:50,779 INFO downloaded s3://models/v1/config.json from http://seaweedfs.data.svc.cluster.local:8333 (799 bytes)
+2026-11-08 11:38:50,786 INFO downloaded s3://models/v1/generation_config.json from http://seaweedfs.data.svc.cluster.local:8333 (111 bytes)
+2026-11-08 11:38:51,994 INFO downloaded s3://models/v1/model.safetensors from http://seaweedfs.data.svc.cluster.local:8333 (281715176 bytes)
+2026-11-08 11:38:52,000 INFO downloaded s3://models/v1/model.sha256 from http://seaweedfs.data.svc.cluster.local:8333 (675 bytes)
+2026-11-08 11:38:52,006 INFO downloaded s3://models/v1/special_tokens_map.json from http://seaweedfs.data.svc.cluster.local:8333 (473 bytes)
+2026-11-08 11:38:52,036 INFO downloaded s3://models/v1/tokenizer.json from http://seaweedfs.data.svc.cluster.local:8333 (3564303 bytes)
+2026-11-08 11:38:52,043 INFO downloaded s3://models/v1/tokenizer_config.json from http://seaweedfs.data.svc.cluster.local:8333 (4846 bytes)
+2026-11-08 11:38:52,049 INFO downloaded s3://models/v1/version.json from http://seaweedfs.data.svc.cluster.local:8333 (847 bytes)
+2026-11-08 11:38:52,049 INFO checksum ok: config.json
+2026-11-08 11:38:52,049 INFO checksum ok: generation_config.json
+2026-11-08 11:38:52,291 INFO checksum ok: model.safetensors
+2026-11-08 11:38:52,291 INFO checksum ok: special_tokens_map.json
+2026-11-08 11:38:52,294 INFO checksum ok: tokenizer.json
+2026-11-08 11:38:52,294 INFO checksum ok: tokenizer_config.json
+2026-11-08 11:38:52,295 INFO checksum ok: version.json
+2026-11-08 11:38:52,295 INFO model download from s3://models/v1/ complete: 285287230 bytes in 1.5s
+2026-11-08 11:39:00,106 INFO model v1 loaded and ready after 10.0s

@@ -1,0 +1,48 @@
+== 2026-11-08T11:40:49Z
+POD                          NAME        CPU(cores)   MEMORY(bytes)   
+cmdparser-6795bc857b-j8sgk   cmdparser   443m         349Mi           
+cmdparser-6795bc857b-w2wsz   cmdparser   3m           357Mi           
+== 2026-11-08T11:40:59Z
+POD                          NAME        CPU(cores)   MEMORY(bytes)   
+cmdparser-6795bc857b-j8sgk   cmdparser   83m          364Mi           
+cmdparser-6795bc857b-w2wsz   cmdparser   3m           357Mi           
+== 2026-11-08T11:41:09Z
+POD                          NAME        CPU(cores)   MEMORY(bytes)   
+cmdparser-6795bc857b-j8sgk   cmdparser   1000m        378Mi           
+cmdparser-6795bc857b-w2wsz   cmdparser   291m         396Mi           
+== 2026-11-08T11:41:19Z
+POD                          NAME        CPU(cores)   MEMORY(bytes)   
+cmdparser-6795bc857b-j8sgk   cmdparser   1000m        378Mi           
+cmdparser-6795bc857b-w2wsz   cmdparser   291m         396Mi           
+== 2026-11-08T11:41:29Z
+POD                          NAME        CPU(cores)   MEMORY(bytes)   
+cmdparser-6795bc857b-j8sgk   cmdparser   1000m        378Mi           
+cmdparser-6795bc857b-w2wsz   cmdparser   1000m        406Mi           
+== 2026-11-08T11:41:39Z
+POD                          NAME        CPU(cores)   MEMORY(bytes)   
+cmdparser-6795bc857b-j8sgk   cmdparser   1000m        378Mi           
+cmdparser-6795bc857b-w2wsz   cmdparser   1000m        435Mi           
+== 2026-11-08T11:41:50Z
+POD                          NAME        CPU(cores)   MEMORY(bytes)   
+cmdparser-6795bc857b-j8sgk   cmdparser   1000m        378Mi           
+cmdparser-6795bc857b-w2wsz   cmdparser   1000m        435Mi           
+== 2026-11-08T11:42:00Z
+POD                          NAME        CPU(cores)   MEMORY(bytes)   
+cmdparser-6795bc857b-j8sgk   cmdparser   1000m        400Mi           
+cmdparser-6795bc857b-w2wsz   cmdparser   999m         435Mi           
+== 2026-11-08T11:42:10Z
+POD                          NAME        CPU(cores)   MEMORY(bytes)   
+cmdparser-6795bc857b-j8sgk   cmdparser   1000m        411Mi           
+cmdparser-6795bc857b-w2wsz   cmdparser   1000m        435Mi           
+== 2026-11-08T11:42:20Z
+POD                          NAME        CPU(cores)   MEMORY(bytes)   
+cmdparser-6795bc857b-j8sgk   cmdparser   1000m        411Mi           
+cmdparser-6795bc857b-w2wsz   cmdparser   1000m        435Mi           
+== 2026-11-08T11:42:30Z
+POD                          NAME        CPU(cores)   MEMORY(bytes)   
+cmdparser-6795bc857b-j8sgk   cmdparser   998m         437Mi           
+cmdparser-6795bc857b-w2wsz   cmdparser   1000m        435Mi           
+== 2026-11-08T11:42:40Z
+POD                          NAME        CPU(cores)   MEMORY(bytes)   
+cmdparser-6795bc857b-j8sgk   cmdparser   999m         442Mi           
+cmdparser-6795bc857b-w2wsz   cmdparser   1000m        414Mi           

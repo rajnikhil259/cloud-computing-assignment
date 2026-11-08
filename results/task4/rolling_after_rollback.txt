@@ -1,0 +1,7 @@
+after the rollback, 6 requests through the Ingress:
+HTTP/1.1 200 OK X-Model-Version: v1 X-Served-By: cmdparser-6795bc857b-x6krk 
+HTTP/1.1 200 OK X-Model-Version: v1 X-Served-By: cmdparser-6795bc857b-8pc8c 
+HTTP/1.1 200 OK X-Model-Version: v1 X-Served-By: cmdparser-6795bc857b-x6krk 
+HTTP/1.1 200 OK X-Model-Version: v1 X-Served-By: cmdparser-6795bc857b-8pc8c 
+HTTP/1.1 200 OK X-Model-Version: v1 X-Served-By: cmdparser-6795bc857b-x6krk 
+HTTP/1.1 200 OK X-Model-Version: v1 X-Served-By: cmdparser-6795bc857b-8pc8c 

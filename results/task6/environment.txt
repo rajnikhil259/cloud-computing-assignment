@@ -1,0 +1,10 @@
+docker 28.0.4
+k3d version v5.7.4
+k3s version v1.30.4-k3s1 (default)
+Client Version: v1.37.2
+Kustomize Version: v5.8.1
+locust 2.32.4 from /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/locust (Python 3.12.16)
+4
+               total        used        free      shared  buff/cache   available
+Mem:              15           0          13           0           1          14
+Swap:              2           0           2

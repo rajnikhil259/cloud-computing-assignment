@@ -1,0 +1,64 @@
+{
+  "definition": "seconds from Pod creationTimestamp to its Ready condition (k8s timestamps, 1 s resolution)",
+  "runs": [
+    {
+      "run": "run1",
+      "pods": [
+        {
+          "pod": "cmdparser-6795bc857b-cqhxh",
+          "created": "2026-11-08T11:38:47Z",
+          "ready": "2026-11-08T11:39:02Z",
+          "seconds_to_ready": 15.0
+        },
+        {
+          "pod": "cmdparser-6795bc857b-wd948",
+          "created": "2026-11-08T11:38:47Z",
+          "ready": "2026-11-08T11:39:00Z",
+          "seconds_to_ready": 13.0
+        }
+      ],
+      "slowest_pod_seconds": 15.0,
+      "mean_pod_seconds": 14.0
+    },
+    {
+      "run": "run2",
+      "pods": [
+        {
+          "pod": "cmdparser-6795bc857b-sldcm",
+          "created": "2026-11-08T11:39:25Z",
+          "ready": "2026-11-08T11:39:38Z",
+          "seconds_to_ready": 13.0
+        },
+        {
+          "pod": "cmdparser-6795bc857b-v885f",
+          "created": "2026-11-08T11:39:25Z",
+          "ready": "2026-11-08T11:39:38Z",
+          "seconds_to_ready": 13.0
+        }
+      ],
+      "slowest_pod_seconds": 13.0,
+      "mean_pod_seconds": 13.0
+    },
+    {
+      "run": "run3",
+      "pods": [
+        {
+          "pod": "cmdparser-6795bc857b-j8sgk",
+          "created": "2026-11-08T11:40:01Z",
+          "ready": "2026-11-08T11:40:15Z",
+          "seconds_to_ready": 14.0
+        },
+        {
+          "pod": "cmdparser-6795bc857b-w2wsz",
+          "created": "2026-11-08T11:40:01Z",
+          "ready": "2026-11-08T11:40:15Z",
+          "seconds_to_ready": 14.0
+        }
+      ],
+      "slowest_pod_seconds": 14.0,
+      "mean_pod_seconds": 14.0
+    }
+  ],
+  "median_over_runs_slowest_pod_seconds": 14.0,
+  "median_over_all_pods_seconds": 13.5
+}

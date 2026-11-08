@@ -1,0 +1,3 @@
+NAME                         READY   STATUS    RESTARTS   AGE     IP           NODE                     NOMINATED NODE   READINESS GATES
+cmdparser-6795bc857b-j8sgk   1/1     Running   0          2m48s   10.42.0.20   k3d-cmdparser-server-0   <none>           <none>
+cmdparser-6795bc857b-w2wsz   1/1     Running   0          2m48s   10.42.0.19   k3d-cmdparser-server-0   <none>           <none>

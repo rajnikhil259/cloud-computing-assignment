@@ -1,0 +1,20 @@
+{
+  "per_replica": {
+    "cmdparser-6795bc857b-j8sgk": {
+      "requests": 280,
+      "share_percent": 49.91
+    },
+    "cmdparser-6795bc857b-w2wsz": {
+      "requests": 281,
+      "share_percent": 50.09
+    }
+  },
+  "per_model_version": {
+    "v1": {
+      "requests": 561,
+      "share_percent": 100.0
+    }
+  },
+  "successful_requests": 561,
+  "min_replica_share_percent": 49.91
+}

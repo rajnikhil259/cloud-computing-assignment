@@ -1,0 +1,15 @@
+23m         Normal    ScalingReplicaSet              deployment/cmdparser                Scaled up replica set cmdparser-6795bc857b to 2
+21m         Warning   FailedGetResourceMetric        horizontalpodautoscaler/cmdparser   failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+21m         Warning   FailedComputeMetricsReplicas   horizontalpodautoscaler/cmdparser   invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+18m         Normal    ScalingReplicaSet              deployment/cmdparser                Scaled up replica set cmdparser-5b5f59d654 to 1
+18m         Normal    ScalingReplicaSet              deployment/cmdparser                Scaled up replica set cmdparser-5b5f59d654 to 2 from 1
+17m         Normal    ScalingReplicaSet              deployment/cmdparser                Scaled down replica set cmdparser-6795bc857b to 0 from 1
+17m         Warning   FailedGetResourceMetric        horizontalpodautoscaler/cmdparser   failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+17m         Warning   FailedComputeMetricsReplicas   horizontalpodautoscaler/cmdparser   invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+16m         Normal    ScalingReplicaSet              deployment/cmdparser                Scaled up replica set cmdparser-6795bc857b to 1 from 0
+16m         Normal    ScalingReplicaSet              deployment/cmdparser                Scaled down replica set cmdparser-5b5f59d654 to 1 from 2
+16m         Normal    ScalingReplicaSet              deployment/cmdparser                Scaled down replica set cmdparser-5b5f59d654 to 0 from 1
+6m41s       Normal    ScalingReplicaSet              deployment/cmdparser                Scaled up replica set cmdparser-6795bc857b to 2 from 1
+6m41s       Normal    SuccessfulRescale              horizontalpodautoscaler/cmdparser   New size: 2; reason: cpu resource utilization (percentage of request) above target
+26s         Normal    ScalingReplicaSet              deployment/cmdparser                Scaled down replica set cmdparser-6795bc857b to 1 from 2
+26s         Normal    SuccessfulRescale              horizontalpodautoscaler/cmdparser   New size: 1; reason: All metrics below target

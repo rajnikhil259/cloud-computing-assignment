@@ -1,0 +1,2 @@
+NAME                     CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)   
+k3d-cmdparser-server-0   1078m        26%      1846Mi          11%         

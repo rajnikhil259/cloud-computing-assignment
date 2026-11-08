@@ -1,0 +1,31 @@
+# 2026-11-08T11:38:45Z resources in namespace app
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                  SELECTOR
+deployment.apps/cmdparser   2/2     2            2           15s   cmdparser    cmdparser-service:1.0   app=cmdparser
+
+NAME                                   DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES                  SELECTOR
+replicaset.apps/cmdparser-6795bc857b   2         2         2       15s   cmdparser    cmdparser-service:1.0   app=cmdparser,pod-template-hash=6795bc857b
+
+NAME                             READY   STATUS    RESTARTS   AGE   IP           NODE                     NOMINATED NODE   READINESS GATES
+pod/cmdparser-6795bc857b-c8w8b   1/1     Running   0          15s   10.42.0.14   k3d-cmdparser-server-0   <none>           <none>
+pod/cmdparser-6795bc857b-hv69l   1/1     Running   0          15s   10.42.0.13   k3d-cmdparser-server-0   <none>           <none>
+
+NAME                TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE   SELECTOR
+service/cmdparser   ClusterIP   10.43.183.96   <none>        80/TCP    15s   app=cmdparser
+
+NAME                  ENDPOINTS                         AGE
+endpoints/cmdparser   10.42.0.13:8000,10.42.0.14:8000   15s
+
+NAME                                  CLASS     HOSTS   ADDRESS      PORTS   AGE
+ingress.networking.k8s.io/cmdparser   traefik   *       172.18.0.2   80      15s
+
+NAME                                            REFERENCE              TARGETS              MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/cmdparser   Deployment/cmdparser   cpu: <unknown>/70%   1         2         2          15s
+
+# requests, limits and probes of the container
+resources={"limits":{"cpu":"1","memory":"1Gi"},"requests":{"cpu":"500m","memory":"512Mi"}}
+readinessProbe={"failureThreshold":2,"httpGet":{"path":"/readyz","port":"http","scheme":"HTTP"},"periodSeconds":2,"successThreshold":1,"timeoutSeconds":2}
+livenessProbe={"failureThreshold":3,"httpGet":{"path":"/healthz","port":"http","scheme":"HTTP"},"initialDelaySeconds":10,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":3}
+env=[{"name":"MODEL_URI","value":"s3://models/v1/"},{"name":"MODEL_VERSION","value":"v1"},{"name":"S3_ENDPOINT","value":"http://seaweedfs.data.svc.cluster.local:8333"},{"name":"MAX_NEW_TOKENS","value":"64"},{"name":"FAULT_INJECT","value":"0"},{"name":"AWS_ACCESS_KEY_ID","valueFrom":{"secretKeyRef":{"key":"AWS_ACCESS_KEY_ID","name":"s3-credentials"}}},{"name":"AWS_SECRET_ACCESS_KEY","valueFrom":{"secretKeyRef":{"key":"AWS_SECRET_ACCESS_KEY","name":"s3-credentials"}}}]
+
+# strategy
+{"rollingUpdate":{"maxSurge":1,"maxUnavailable":0},"type":"RollingUpdate"}

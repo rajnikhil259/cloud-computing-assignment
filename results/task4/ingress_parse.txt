@@ -1,0 +1,23 @@
+$ curl -i -X POST http://localhost:8080/parse   (through the Traefik Ingress)
+HTTP/1.1 200 OK
+Content-Length: 78
+Content-Type: application/json
+Date: Sun, 08 Nov 2026 11:38:45 GMT
+Server: uvicorn
+X-Model-Version: v1
+X-Served-By: cmdparser-6795bc857b-c8w8b
+
+{"intent":"alarm_set","date":"tomorrow","time":"seven thirty am","place":null}
+
+HTTP/1.1 200 OK
+Content-Length: 67
+Content-Type: application/json
+Date: Sun, 08 Nov 2026 11:38:45 GMT
+Server: uvicorn
+X-Model-Version: v1
+X-Served-By: cmdparser-6795bc857b-hv69l
+
+{"intent":"weather_query","date":null,"time":null,"place":"london"}
+
+$ curl -i http://localhost:8080/healthz   (not routed: only /parse goes through the Ingress)
+HTTP/1.1 404 Not Found

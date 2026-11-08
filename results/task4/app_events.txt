@@ -1,0 +1,131 @@
+LAST SEEN   TYPE      REASON                         OBJECT                              MESSAGE
+22m         Normal    Scheduled                      pod/cmdparser-6795bc857b-v885f      Successfully assigned app/cmdparser-6795bc857b-v885f to k3d-cmdparser-server-0
+23m         Normal    Scheduled                      pod/cmdparser-6795bc857b-c8w8b      Successfully assigned app/cmdparser-6795bc857b-c8w8b to k3d-cmdparser-server-0
+22m         Normal    Scheduled                      pod/cmdparser-6795bc857b-sldcm      Successfully assigned app/cmdparser-6795bc857b-sldcm to k3d-cmdparser-server-0
+22m         Normal    Scheduled                      pod/cmdparser-6795bc857b-j8sgk      Successfully assigned app/cmdparser-6795bc857b-j8sgk to k3d-cmdparser-server-0
+6m46s       Normal    Scheduled                      pod/cmdparser-6795bc857b-9zm9n      Successfully assigned app/cmdparser-6795bc857b-9zm9n to k3d-cmdparser-server-0
+22m         Normal    Scheduled                      pod/cmdparser-6795bc857b-w2wsz      Successfully assigned app/cmdparser-6795bc857b-w2wsz to k3d-cmdparser-server-0
+23m         Normal    Scheduled                      pod/cmdparser-6795bc857b-cqhxh      Successfully assigned app/cmdparser-6795bc857b-cqhxh to k3d-cmdparser-server-0
+18m         Normal    Scheduled                      pod/cmdparser-5b5f59d654-psqfb      Successfully assigned app/cmdparser-5b5f59d654-psqfb to k3d-cmdparser-server-0
+23m         Normal    Scheduled                      pod/cmdparser-6795bc857b-wd948      Successfully assigned app/cmdparser-6795bc857b-wd948 to k3d-cmdparser-server-0
+16m         Normal    Scheduled                      pod/cmdparser-6795bc857b-8pc8c      Successfully assigned app/cmdparser-6795bc857b-8pc8c to k3d-cmdparser-server-0
+11m         Normal    Scheduled                      pod/cmdparser-6795bc857b-csn6h      Successfully assigned app/cmdparser-6795bc857b-csn6h to k3d-cmdparser-server-0
+16m         Normal    Scheduled                      pod/cmdparser-6795bc857b-x6krk      Successfully assigned app/cmdparser-6795bc857b-x6krk to k3d-cmdparser-server-0
+18m         Normal    Scheduled                      pod/cmdparser-5b5f59d654-cl487      Successfully assigned app/cmdparser-5b5f59d654-cl487 to k3d-cmdparser-server-0
+23m         Normal    Scheduled                      pod/cmdparser-6795bc857b-hv69l      Successfully assigned app/cmdparser-6795bc857b-hv69l to k3d-cmdparser-server-0
+23m         Normal    Pulled                         pod/cmdparser-6795bc857b-hv69l      Container image "cmdparser-service:1.0" already present on machine
+23m         Normal    Started                        pod/cmdparser-6795bc857b-c8w8b      Started container cmdparser
+23m         Normal    Started                        pod/cmdparser-6795bc857b-hv69l      Started container cmdparser
+23m         Normal    SuccessfulCreate               replicaset/cmdparser-6795bc857b     Created pod: cmdparser-6795bc857b-hv69l
+23m         Normal    SuccessfulCreate               replicaset/cmdparser-6795bc857b     Created pod: cmdparser-6795bc857b-c8w8b
+23m         Normal    ScalingReplicaSet              deployment/cmdparser                Scaled up replica set cmdparser-6795bc857b to 2
+23m         Normal    Pulled                         pod/cmdparser-6795bc857b-c8w8b      Container image "cmdparser-service:1.0" already present on machine
+23m         Normal    Created                        pod/cmdparser-6795bc857b-c8w8b      Created container cmdparser
+23m         Normal    Created                        pod/cmdparser-6795bc857b-hv69l      Created container cmdparser
+23m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-hv69l      Readiness probe failed: HTTP probe failed with statuscode: 503
+23m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-c8w8b      Readiness probe failed: HTTP probe failed with statuscode: 503
+23m         Normal    Killing                        pod/cmdparser-6795bc857b-hv69l      Stopping container cmdparser
+23m         Normal    Killing                        pod/cmdparser-6795bc857b-c8w8b      Stopping container cmdparser
+23m         Normal    SuccessfulCreate               replicaset/cmdparser-6795bc857b     Created pod: cmdparser-6795bc857b-cqhxh
+23m         Normal    SuccessfulCreate               replicaset/cmdparser-6795bc857b     Created pod: cmdparser-6795bc857b-wd948
+23m         Normal    Created                        pod/cmdparser-6795bc857b-wd948      Created container cmdparser
+23m         Normal    Pulled                         pod/cmdparser-6795bc857b-cqhxh      Container image "cmdparser-service:1.0" already present on machine
+23m         Normal    Pulled                         pod/cmdparser-6795bc857b-wd948      Container image "cmdparser-service:1.0" already present on machine
+23m         Normal    Started                        pod/cmdparser-6795bc857b-wd948      Started container cmdparser
+23m         Normal    Started                        pod/cmdparser-6795bc857b-cqhxh      Started container cmdparser
+23m         Normal    Created                        pod/cmdparser-6795bc857b-cqhxh      Created container cmdparser
+23m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-hv69l      Readiness probe failed: Get "http://10.42.0.13:8000/readyz": dial tcp 10.42.0.13:8000: connect: connection refused
+23m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-c8w8b      Readiness probe failed: Get "http://10.42.0.14:8000/readyz": dial tcp 10.42.0.14:8000: connect: connection refused
+23m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-wd948      Readiness probe failed: HTTP probe failed with statuscode: 503
+23m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-cqhxh      Readiness probe failed: HTTP probe failed with statuscode: 503
+22m         Normal    Killing                        pod/cmdparser-6795bc857b-wd948      Stopping container cmdparser
+22m         Normal    SuccessfulCreate               replicaset/cmdparser-6795bc857b     Created pod: cmdparser-6795bc857b-v885f
+22m         Normal    SuccessfulCreate               replicaset/cmdparser-6795bc857b     Created pod: cmdparser-6795bc857b-sldcm
+22m         Normal    Killing                        pod/cmdparser-6795bc857b-cqhxh      Stopping container cmdparser
+22m         Normal    Started                        pod/cmdparser-6795bc857b-sldcm      Started container cmdparser
+22m         Normal    Pulled                         pod/cmdparser-6795bc857b-v885f      Container image "cmdparser-service:1.0" already present on machine
+22m         Normal    Started                        pod/cmdparser-6795bc857b-v885f      Started container cmdparser
+22m         Normal    Created                        pod/cmdparser-6795bc857b-v885f      Created container cmdparser
+22m         Normal    Pulled                         pod/cmdparser-6795bc857b-sldcm      Container image "cmdparser-service:1.0" already present on machine
+22m         Normal    Created                        pod/cmdparser-6795bc857b-sldcm      Created container cmdparser
+22m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-wd948      Readiness probe failed: Get "http://10.42.0.15:8000/readyz": dial tcp 10.42.0.15:8000: connect: connection refused
+22m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-cqhxh      Readiness probe failed: Get "http://10.42.0.16:8000/readyz": dial tcp 10.42.0.16:8000: connect: connection refused
+22m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-sldcm      Readiness probe failed: HTTP probe failed with statuscode: 503
+22m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-v885f      Readiness probe failed: HTTP probe failed with statuscode: 503
+22m         Normal    Pulled                         pod/cmdparser-6795bc857b-w2wsz      Container image "cmdparser-service:1.0" already present on machine
+22m         Normal    Started                        pod/cmdparser-6795bc857b-w2wsz      Started container cmdparser
+22m         Normal    Created                        pod/cmdparser-6795bc857b-w2wsz      Created container cmdparser
+22m         Normal    Killing                        pod/cmdparser-6795bc857b-v885f      Stopping container cmdparser
+22m         Normal    Killing                        pod/cmdparser-6795bc857b-sldcm      Stopping container cmdparser
+22m         Normal    SuccessfulCreate               replicaset/cmdparser-6795bc857b     Created pod: cmdparser-6795bc857b-w2wsz
+22m         Normal    Pulled                         pod/cmdparser-6795bc857b-j8sgk      Container image "cmdparser-service:1.0" already present on machine
+22m         Normal    Created                        pod/cmdparser-6795bc857b-j8sgk      Created container cmdparser
+22m         Normal    SuccessfulCreate               replicaset/cmdparser-6795bc857b     Created pod: cmdparser-6795bc857b-j8sgk
+22m         Normal    Started                        pod/cmdparser-6795bc857b-j8sgk      Started container cmdparser
+21m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-sldcm      Readiness probe failed: Get "http://10.42.0.18:8000/readyz": dial tcp 10.42.0.18:8000: connect: connection refused
+21m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-v885f      Readiness probe failed: Get "http://10.42.0.17:8000/readyz": dial tcp 10.42.0.17:8000: connect: connection refused
+21m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-j8sgk      Readiness probe failed: HTTP probe failed with statuscode: 503
+21m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-w2wsz      Readiness probe failed: HTTP probe failed with statuscode: 503
+21m         Warning   FailedGetResourceMetric        horizontalpodautoscaler/cmdparser   failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+21m         Warning   FailedComputeMetricsReplicas   horizontalpodautoscaler/cmdparser   invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+18m         Normal    Pulled                         pod/cmdparser-5b5f59d654-psqfb      Container image "cmdparser-service:1.0" already present on machine
+18m         Normal    SuccessfulCreate               replicaset/cmdparser-5b5f59d654     Created pod: cmdparser-5b5f59d654-psqfb
+18m         Normal    ScalingReplicaSet              deployment/cmdparser                Scaled up replica set cmdparser-5b5f59d654 to 1
+18m         Normal    Created                        pod/cmdparser-5b5f59d654-psqfb      Created container cmdparser
+18m         Normal    Started                        pod/cmdparser-5b5f59d654-psqfb      Started container cmdparser
+18m         Warning   Unhealthy                      pod/cmdparser-5b5f59d654-psqfb      Readiness probe failed: Get "http://10.42.0.21:8000/readyz": dial tcp 10.42.0.21:8000: connect: connection refused
+18m         Warning   Unhealthy                      pod/cmdparser-5b5f59d654-psqfb      Readiness probe failed: HTTP probe failed with statuscode: 503
+18m         Normal    ScalingReplicaSet              deployment/cmdparser                Scaled up replica set cmdparser-5b5f59d654 to 2 from 1
+18m         Normal    SuccessfulDelete               replicaset/cmdparser-6795bc857b     Deleted pod: cmdparser-6795bc857b-w2wsz
+18m         Normal    SuccessfulCreate               replicaset/cmdparser-5b5f59d654     Created pod: cmdparser-5b5f59d654-cl487
+18m         Normal    Killing                        pod/cmdparser-6795bc857b-w2wsz      Stopping container cmdparser
+18m         Normal    Pulled                         pod/cmdparser-5b5f59d654-cl487      Container image "cmdparser-service:1.0" already present on machine
+18m         Normal    Started                        pod/cmdparser-5b5f59d654-cl487      Started container cmdparser
+18m         Normal    Created                        pod/cmdparser-5b5f59d654-cl487      Created container cmdparser
+18m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-w2wsz      Readiness probe failed: Get "http://10.42.0.19:8000/readyz": dial tcp 10.42.0.19:8000: connect: connection refused
+18m         Warning   Unhealthy                      pod/cmdparser-5b5f59d654-cl487      Readiness probe failed: HTTP probe failed with statuscode: 503
+17m         Normal    SuccessfulDelete               replicaset/cmdparser-6795bc857b     Deleted pod: cmdparser-6795bc857b-j8sgk
+17m         Normal    Killing                        pod/cmdparser-6795bc857b-j8sgk      Stopping container cmdparser
+17m         Normal    ScalingReplicaSet              deployment/cmdparser                Scaled down replica set cmdparser-6795bc857b to 0 from 1
+17m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-j8sgk      Readiness probe failed: Get "http://10.42.0.20:8000/readyz": dial tcp 10.42.0.20:8000: connect: connection refused
+17m         Warning   FailedGetResourceMetric        horizontalpodautoscaler/cmdparser   failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+17m         Warning   FailedComputeMetricsReplicas   horizontalpodautoscaler/cmdparser   invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+16m         Normal    SuccessfulCreate               replicaset/cmdparser-6795bc857b     Created pod: cmdparser-6795bc857b-x6krk
+16m         Normal    ScalingReplicaSet              deployment/cmdparser                Scaled up replica set cmdparser-6795bc857b to 1 from 0
+16m         Normal    Pulled                         pod/cmdparser-6795bc857b-x6krk      Container image "cmdparser-service:1.0" already present on machine
+16m         Normal    Created                        pod/cmdparser-6795bc857b-x6krk      Created container cmdparser
+16m         Normal    Started                        pod/cmdparser-6795bc857b-x6krk      Started container cmdparser
+16m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-x6krk      Readiness probe failed: Get "http://10.42.0.23:8000/readyz": dial tcp 10.42.0.23:8000: connect: connection refused
+16m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-x6krk      Readiness probe failed: HTTP probe failed with statuscode: 503
+16m         Normal    SuccessfulDelete               replicaset/cmdparser-5b5f59d654     Deleted pod: cmdparser-5b5f59d654-cl487
+16m         Normal    Killing                        pod/cmdparser-5b5f59d654-cl487      Stopping container cmdparser
+16m         Normal    ScalingReplicaSet              deployment/cmdparser                Scaled down replica set cmdparser-5b5f59d654 to 1 from 2
+16m         Normal    Created                        pod/cmdparser-6795bc857b-8pc8c      Created container cmdparser
+16m         Normal    Pulled                         pod/cmdparser-6795bc857b-8pc8c      Container image "cmdparser-service:1.0" already present on machine
+16m         Normal    Started                        pod/cmdparser-6795bc857b-8pc8c      Started container cmdparser
+16m         Warning   Unhealthy                      pod/cmdparser-5b5f59d654-cl487      Readiness probe failed: Get "http://10.42.0.22:8000/readyz": dial tcp 10.42.0.22:8000: connect: connection refused
+16m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-8pc8c      Readiness probe failed: HTTP probe failed with statuscode: 503
+16m         Normal    SuccessfulDelete               replicaset/cmdparser-5b5f59d654     Deleted pod: cmdparser-5b5f59d654-psqfb
+16m         Normal    ScalingReplicaSet              deployment/cmdparser                Scaled down replica set cmdparser-5b5f59d654 to 0 from 1
+16m         Normal    Killing                        pod/cmdparser-5b5f59d654-psqfb      Stopping container cmdparser
+11m         Normal    Pulled                         pod/cmdparser-6795bc857b-csn6h      Container image "cmdparser-service:1.0" already present on machine
+11m         Normal    Killing                        pod/cmdparser-6795bc857b-8pc8c      Stopping container cmdparser
+11m         Normal    Started                        pod/cmdparser-6795bc857b-csn6h      Started container cmdparser
+11m         Normal    Created                        pod/cmdparser-6795bc857b-csn6h      Created container cmdparser
+11m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-8pc8c      Readiness probe failed: Get "http://10.42.0.24:8000/readyz": dial tcp 10.42.0.24:8000: connect: connection refused
+11m         Warning   Unhealthy                      pod/cmdparser-6795bc857b-csn6h      Readiness probe failed: HTTP probe failed with statuscode: 503
+7m46s       Normal    Killing                        pod/cmdparser-6795bc857b-csn6h      Stopping container cmdparser
+7m46s       Normal    SuccessfulDelete               replicaset/cmdparser-6795bc857b     Deleted pod: cmdparser-6795bc857b-csn6h
+7m38s       Warning   Unhealthy                      pod/cmdparser-6795bc857b-csn6h      Readiness probe failed: Get "http://10.42.0.25:8000/readyz": dial tcp 10.42.0.25:8000: connect: connection refused
+6m46s       Normal    SuccessfulCreate               replicaset/cmdparser-6795bc857b     (combined from similar events): Created pod: cmdparser-6795bc857b-9zm9n
+6m46s       Normal    Started                        pod/cmdparser-6795bc857b-9zm9n      Started container cmdparser
+6m46s       Normal    Created                        pod/cmdparser-6795bc857b-9zm9n      Created container cmdparser
+6m46s       Normal    ScalingReplicaSet              deployment/cmdparser                Scaled up replica set cmdparser-6795bc857b to 2 from 1
+6m46s       Normal    Pulled                         pod/cmdparser-6795bc857b-9zm9n      Container image "cmdparser-service:1.0" already present on machine
+6m46s       Normal    SuccessfulRescale              horizontalpodautoscaler/cmdparser   New size: 2; reason: cpu resource utilization (percentage of request) above target
+6m44s       Warning   Unhealthy                      pod/cmdparser-6795bc857b-9zm9n      Readiness probe failed: Get "http://10.42.0.26:8000/readyz": dial tcp 10.42.0.26:8000: connect: connection refused
+6m38s       Warning   Unhealthy                      pod/cmdparser-6795bc857b-9zm9n      Readiness probe failed: HTTP probe failed with statuscode: 503
+31s         Normal    Killing                        pod/cmdparser-6795bc857b-9zm9n      Stopping container cmdparser
+31s         Normal    ScalingReplicaSet              deployment/cmdparser                Scaled down replica set cmdparser-6795bc857b to 1 from 2
+31s         Normal    SuccessfulDelete               replicaset/cmdparser-6795bc857b     Deleted pod: cmdparser-6795bc857b-9zm9n
+31s         Normal    SuccessfulRescale              horizontalpodautoscaler/cmdparser   New size: 1; reason: All metrics below target

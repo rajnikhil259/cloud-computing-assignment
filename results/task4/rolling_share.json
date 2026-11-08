@@ -1,0 +1,40 @@
+{
+  "per_replica": {
+    "cmdparser-6795bc857b-w2wsz": {
+      "requests": 134,
+      "share_percent": 7.49
+    },
+    "cmdparser-6795bc857b-j8sgk": {
+      "requests": 148,
+      "share_percent": 8.28
+    },
+    "cmdparser-5b5f59d654-psqfb": {
+      "requests": 216,
+      "share_percent": 12.08
+    },
+    "cmdparser-5b5f59d654-cl487": {
+      "requests": 163,
+      "share_percent": 9.12
+    },
+    "cmdparser-6795bc857b-x6krk": {
+      "requests": 582,
+      "share_percent": 32.55
+    },
+    "cmdparser-6795bc857b-8pc8c": {
+      "requests": 545,
+      "share_percent": 30.48
+    }
+  },
+  "per_model_version": {
+    "v1": {
+      "requests": 1409,
+      "share_percent": 78.8
+    },
+    "v2": {
+      "requests": 379,
+      "share_percent": 21.2
+    }
+  },
+  "successful_requests": 1788,
+  "min_replica_share_percent": 7.49
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "pod": "cmdparser-6795bc857b-sldcm",
+    "created": "2026-11-08T11:39:25Z",
+    "ready": "2026-11-08T11:39:38Z",
+    "seconds_to_ready": 13.0
+  },
+  {
+    "pod": "cmdparser-6795bc857b-v885f",
+    "created": "2026-11-08T11:39:25Z",
+    "ready": "2026-11-08T11:39:38Z",
+    "seconds_to_ready": 13.0
+  }
+]

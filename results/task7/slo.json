@@ -1,0 +1,10 @@
+{
+  "slo": "99.0% of POST /parse requests return HTTP 200 within 30 s",
+  "window": "one standard load-test run (4 users, 2 minutes)",
+  "requests": 557,
+  "failures": 0,
+  "error_budget_requests": 5.57,
+  "budget_used_requests": 0,
+  "budget_used_percent": 0.0,
+  "slo_met": true
+}

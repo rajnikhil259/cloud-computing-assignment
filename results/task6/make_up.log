@@ -1,0 +1,488 @@
+scripts/up.sh
+[11:35:50] creating cluster cmdparser from cluster/k3d.yaml
+[36mINFO[0m[0000] Using config file /home/runner/work/cloud-computing-assignment/cloud-computing-assignment/cluster/k3d.yaml (k3d.io/v1alpha5#simple) 
+[36mINFO[0m[0000] portmapping '8080:80' targets the loadbalancer: defaulting to [servers:*:proxy agents:*:proxy] 
+[36mINFO[0m[0000] portmapping '8333:8333' targets the loadbalancer: defaulting to [servers:*:proxy agents:*:proxy] 
+[36mINFO[0m[0000] Prep: Network                                
+[36mINFO[0m[0000] Created network 'k3d-cmdparser'              
+[36mINFO[0m[0000] Created image volume k3d-cmdparser-images    
+[36mINFO[0m[0000] Starting new tools node...                   
+[36mINFO[0m[0000] Pulling image 'ghcr.io/k3d-io/k3d-tools:5.7.4' 
+[36mINFO[0m[0000] Starting node 'k3d-cmdparser-tools'          
+[36mINFO[0m[0001] Creating node 'k3d-cmdparser-server-0'       
+[36mINFO[0m[0001] Pulling image 'rancher/k3s:v1.31.4-k3s1'     
+[36mINFO[0m[0003] Creating LoadBalancer 'k3d-cmdparser-serverlb' 
+[36mINFO[0m[0003] Pulling image 'ghcr.io/k3d-io/k3d-proxy:5.7.4' 
+[36mINFO[0m[0004] Using the k3d-tools node to gather environment information 
+[36mINFO[0m[0004] HostIP: using network gateway 172.18.0.1 address 
+[36mINFO[0m[0004] Starting cluster 'cmdparser'                 
+[36mINFO[0m[0004] Starting servers...                          
+[36mINFO[0m[0004] Starting node 'k3d-cmdparser-server-0'       
+[36mINFO[0m[0008] All agents already running.                  
+[36mINFO[0m[0008] Starting helpers...                          
+[36mINFO[0m[0008] Starting node 'k3d-cmdparser-serverlb'       
+[36mINFO[0m[0014] Injecting records for hostAliases (incl. host.k3d.internal) and for 2 network members into CoreDNS configmap... 
+[36mINFO[0m[0016] Cluster 'cmdparser' created successfully!    
+[36mINFO[0m[0016] You can now use it like this:                
+kubectl cluster-info
+node/k3d-cmdparser-server-0 condition met
+namespace/data created
+namespace/pipeline created
+namespace/app created
+[11:36:08] generated new S3 credentials in .secrets/s3.env
+[11:36:10] secrets ready: data/seaweedfs-s3-config, {data,pipeline,app}/s3-credentials
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 854B done
+#1 DONE 0.0s
+
+#2 [auth] library/python:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12.8-slim-bookworm
+#3 DONE 0.4s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 173B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 1.54MB 0.0s done
+#5 DONE 0.0s
+
+#6 [1/9] FROM docker.io/library/python:3.12.8-slim-bookworm@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
+#6 resolve docker.io/library/python:3.12.8-slim-bookworm@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0 done
+#6 sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0 9.12kB / 9.12kB done
+#6 sha256:8859bd6ca943079262c27e38b7119cdacede77c463139a15651dd340087a6cc9 1.75kB / 1.75kB done
+#6 sha256:9868da1de9f4ed56f66f6f501440e23c230ea163f0636ef0e24564dcbcc1ef27 5.31kB / 5.31kB done
+#6 sha256:c29f5b76f736a8b555fd191c48d6581bb918bcd605a7cbcc76205dd6acff3260 23.07MB / 28.21MB 0.1s
+#6 sha256:098e41244522393883cbb93f62147db2c32f26de2185e5db78284907a6b85a9e 0B / 3.51MB 0.1s
+#6 sha256:4e22988d3ed333790f3231e5e3c87c57623c492221db601eebc5f5c2e41b37b0 3.15MB / 13.65MB 0.1s
+#6 sha256:c29f5b76f736a8b555fd191c48d6581bb918bcd605a7cbcc76205dd6acff3260 28.21MB / 28.21MB 0.1s done
+#6 sha256:098e41244522393883cbb93f62147db2c32f26de2185e5db78284907a6b85a9e 3.51MB / 3.51MB 0.1s done
+#6 sha256:4e22988d3ed333790f3231e5e3c87c57623c492221db601eebc5f5c2e41b37b0 13.65MB / 13.65MB 0.2s done
+#6 extracting sha256:c29f5b76f736a8b555fd191c48d6581bb918bcd605a7cbcc76205dd6acff3260
+#6 sha256:260bd0d7f5c096e7d750ac73b0a8cdd5cd6de93b69a62e0df930681effe9a539 249B / 249B 0.2s done
+#6 extracting sha256:c29f5b76f736a8b555fd191c48d6581bb918bcd605a7cbcc76205dd6acff3260 1.6s done
+#6 extracting sha256:098e41244522393883cbb93f62147db2c32f26de2185e5db78284907a6b85a9e 0.1s
+#6 extracting sha256:098e41244522393883cbb93f62147db2c32f26de2185e5db78284907a6b85a9e 0.2s done
+#6 extracting sha256:4e22988d3ed333790f3231e5e3c87c57623c492221db601eebc5f5c2e41b37b0
+#6 extracting sha256:4e22988d3ed333790f3231e5e3c87c57623c492221db601eebc5f5c2e41b37b0 0.6s done
+#6 extracting sha256:260bd0d7f5c096e7d750ac73b0a8cdd5cd6de93b69a62e0df930681effe9a539
+#6 extracting sha256:260bd0d7f5c096e7d750ac73b0a8cdd5cd6de93b69a62e0df930681effe9a539 done
+#6 DONE 2.8s
+
+#7 [2/9] WORKDIR /app/worker
+#7 DONE 0.0s
+
+#8 [3/9] COPY worker/requirements.txt /tmp/requirements.txt
+#8 DONE 0.0s
+
+#9 [4/9] RUN pip install --no-deps -r /tmp/requirements.txt && pip check
+#9 2.115 Collecting boto3==1.35.76 (from -r /tmp/requirements.txt (line 3))
+#9 2.150   Downloading boto3-1.35.76-py3-none-any.whl.metadata (6.7 kB)
+#9 2.897 Collecting botocore==1.35.85 (from -r /tmp/requirements.txt (line 4))
+#9 2.900   Downloading botocore-1.35.85-py3-none-any.whl.metadata (5.7 kB)
+#9 2.930 Collecting certifi==2024.12.14 (from -r /tmp/requirements.txt (line 5))
+#9 2.933   Downloading certifi-2024.12.14-py3-none-any.whl.metadata (2.3 kB)
+#9 3.150 Collecting charset-normalizer==3.4.0 (from -r /tmp/requirements.txt (line 6))
+#9 3.154   Downloading charset_normalizer-3.4.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (34 kB)
+#9 3.176 Collecting idna==3.10 (from -r /tmp/requirements.txt (line 7))
+#9 3.179   Downloading idna-3.10-py3-none-any.whl.metadata (10 kB)
+#9 3.191 Collecting jmespath==1.0.1 (from -r /tmp/requirements.txt (line 8))
+#9 3.194   Downloading jmespath-1.0.1-py3-none-any.whl.metadata (7.6 kB)
+#9 3.211 Collecting python-dateutil==2.9.0.post0 (from -r /tmp/requirements.txt (line 9))
+#9 3.214   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+#9 3.255 Collecting requests==2.32.3 (from -r /tmp/requirements.txt (line 10))
+#9 3.258   Downloading requests-2.32.3-py3-none-any.whl.metadata (4.6 kB)
+#9 3.285 Collecting s3transfer==0.10.4 (from -r /tmp/requirements.txt (line 11))
+#9 3.289   Downloading s3transfer-0.10.4-py3-none-any.whl.metadata (1.7 kB)
+#9 3.307 Collecting six==1.17.0 (from -r /tmp/requirements.txt (line 12))
+#9 3.311   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#9 3.363 Collecting urllib3==2.2.3 (from -r /tmp/requirements.txt (line 13))
+#9 3.366   Downloading urllib3-2.2.3-py3-none-any.whl.metadata (6.5 kB)
+#9 3.379 Downloading boto3-1.35.76-py3-none-any.whl (139 kB)
+#9 3.384 Downloading botocore-1.35.85-py3-none-any.whl (13.3 MB)
+#9 3.435    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.3/13.3 MB 275.2 MB/s eta 0:00:00
+#9 3.438 Downloading certifi-2024.12.14-py3-none-any.whl (164 kB)
+#9 3.442 Downloading charset_normalizer-3.4.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (143 kB)
+#9 3.445 Downloading idna-3.10-py3-none-any.whl (70 kB)
+#9 3.449 Downloading jmespath-1.0.1-py3-none-any.whl (20 kB)
+#9 3.452 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#9 3.455 Downloading requests-2.32.3-py3-none-any.whl (64 kB)
+#9 3.459 Downloading s3transfer-0.10.4-py3-none-any.whl (83 kB)
+#9 3.462 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#9 3.465 Downloading urllib3-2.2.3-py3-none-any.whl (126 kB)
+#9 3.498 Installing collected packages: urllib3, six, s3transfer, requests, python-dateutil, jmespath, idna, charset-normalizer, certifi, botocore, boto3
+#9 4.522 Successfully installed boto3-1.35.76 botocore-1.35.85 certifi-2024.12.14 charset-normalizer-3.4.0 idna-3.10 jmespath-1.0.1 python-dateutil-2.9.0.post0 requests-2.32.3 s3transfer-0.10.4 six-1.17.0 urllib3-2.2.3
+#9 4.523 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#9 5.579 No broken requirements found.
+#9 DONE 5.7s
+
+#10 [5/9] COPY worker/*.py /app/worker/
+#10 DONE 0.0s
+
+#11 [6/9] COPY data/commands_pool.jsonl data/validation.jsonl data/schema.json /app/data/
+#11 DONE 0.0s
+
+#12 [7/9] COPY datasets/ /app/datasets/
+#12 DONE 0.0s
+
+#13 [8/9] COPY models/ /app/models/
+#13 DONE 0.0s
+
+#14 [9/9] RUN useradd --uid 10001 --no-create-home appuser
+#14 DONE 0.1s
+
+#15 exporting to image
+#15 exporting layers
+#15 exporting layers 1.3s done
+#15 writing image sha256:d2bd44c672a3b5c3cf2285d7294992308b5fadc0e3aed1593130f463afeaf791 done
+#15 naming to docker.io/library/cmdparser-tools:1.0 done
+#15 DONE 1.3s
+[36mINFO[0m[0000] Importing image(s) into cluster 'cmdparser'  
+[36mINFO[0m[0000] Starting new tools node...                   
+[36mINFO[0m[0000] Starting node 'k3d-cmdparser-tools'          
+[36mINFO[0m[0000] Saving 1 image(s) from runtime...            
+[36mINFO[0m[0002] Importing images into nodes...               
+[36mINFO[0m[0002] Importing images from tarball '/k3d/images/k3d-cmdparser-images-20261108113621.tar' into node 'k3d-cmdparser-server-0'... 
+[36mINFO[0m[0005] Removing the tarball(s) from image volume... 
+[36mINFO[0m[0006] Removing k3d-tools node...                   
+[36mINFO[0m[0006] Successfully imported image(s)               
+[36mINFO[0m[0006] Successfully imported 1 image(s) into 1 cluster(s) 
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.11kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12.8-slim-bookworm
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 173B done
+#3 DONE 0.0s
+
+#4 [1/7] FROM docker.io/library/python:3.12.8-slim-bookworm@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
+#4 CACHED
+
+#5 [2/7] WORKDIR /app
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 11.57kB done
+#6 DONE 0.0s
+
+#7 [3/7] COPY service/requirements.txt /tmp/requirements.txt
+#7 DONE 0.0s
+
+#8 [4/7] RUN pip install --no-deps -r /tmp/requirements.txt && pip check  && find /usr/local/lib/python3.12 -name "__pycache__" -type d -prune -exec rm -rf {} +  && rm -rf /usr/local/lib/python3.12/site-packages/torch/include /root/.cache
+#8 1.409 Looking in indexes: https://pypi.org/simple, https://download.pytorch.org/whl/cpu
+#8 1.825 Collecting torch==2.5.1+cpu (from -r /tmp/requirements.txt (line 4))
+#8 1.885   Downloading https://download-r2.pytorch.org/whl/cpu/torch-2.5.1%2Bcpu-cp312-cp312-linux_x86_64.whl (174.6 MB)
+#8 2.326      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 174.6/174.6 MB 403.6 MB/s eta 0:00:00
+#8 2.669 Collecting transformers==4.46.3 (from -r /tmp/requirements.txt (line 5))
+#8 2.703   Downloading transformers-4.46.3-py3-none-any.whl.metadata (44 kB)
+#8 3.103 Collecting tokenizers==0.20.3 (from -r /tmp/requirements.txt (line 6))
+#8 3.107   Downloading tokenizers-0.20.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.7 kB)
+#8 3.321 Collecting safetensors==0.4.5 (from -r /tmp/requirements.txt (line 7))
+#8 3.325   Downloading safetensors-0.4.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.8 kB)
+#8 3.483 Collecting huggingface-hub==0.26.5 (from -r /tmp/requirements.txt (line 8))
+#8 3.487   Downloading huggingface_hub-0.26.5-py3-none-any.whl.metadata (13 kB)
+#8 4.290 Collecting numpy==2.1.3 (from -r /tmp/requirements.txt (line 9))
+#8 4.294   Downloading numpy-2.1.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+#8 4.402 Collecting pyyaml==6.0.2 (from -r /tmp/requirements.txt (line 10))
+#8 4.405   Downloading PyYAML-6.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+#8 4.582 Collecting fastapi==0.115.5 (from -r /tmp/requirements.txt (line 11))
+#8 4.586   Downloading fastapi-0.115.5-py3-none-any.whl.metadata (27 kB)
+#8 4.675 Collecting starlette==0.41.3 (from -r /tmp/requirements.txt (line 12))
+#8 4.679   Downloading starlette-0.41.3-py3-none-any.whl.metadata (6.0 kB)
+#8 4.905 Collecting pydantic==2.10.3 (from -r /tmp/requirements.txt (line 13))
+#8 4.908   Downloading pydantic-2.10.3-py3-none-any.whl.metadata (172 kB)
+#8 6.115 Collecting pydantic-core==2.27.1 (from -r /tmp/requirements.txt (line 14))
+#8 6.119   Downloading pydantic_core-2.27.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+#8 6.160 Collecting annotated-types==0.7.0 (from -r /tmp/requirements.txt (line 15))
+#8 6.163   Downloading annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+#8 6.240 Collecting uvicorn==0.32.1 (from -r /tmp/requirements.txt (line 16))
+#8 6.244   Downloading uvicorn-0.32.1-py3-none-any.whl.metadata (6.6 kB)
+#8 6.309 Collecting click==8.1.7 (from -r /tmp/requirements.txt (line 17))
+#8 6.313   Downloading click-8.1.7-py3-none-any.whl.metadata (3.0 kB)
+#8 6.365 Collecting h11==0.14.0 (from -r /tmp/requirements.txt (line 18))
+#8 6.369   Downloading h11-0.14.0-py3-none-any.whl.metadata (8.2 kB)
+#8 6.441 Collecting anyio==4.7.0 (from -r /tmp/requirements.txt (line 19))
+#8 6.444   Downloading anyio-4.7.0-py3-none-any.whl.metadata (4.7 kB)
+#8 6.491 Collecting sniffio==1.3.1 (from -r /tmp/requirements.txt (line 20))
+#8 6.495   Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+#8 6.628 Collecting jsonschema==4.23.0 (from -r /tmp/requirements.txt (line 21))
+#8 6.631   Downloading jsonschema-4.23.0-py3-none-any.whl.metadata (7.9 kB)
+#8 6.682 Collecting jsonschema-specifications==2024.10.1 (from -r /tmp/requirements.txt (line 22))
+#8 6.686   Downloading jsonschema_specifications-2024.10.1-py3-none-any.whl.metadata (3.0 kB)
+#8 6.759 Collecting referencing==0.35.1 (from -r /tmp/requirements.txt (line 23))
+#8 6.762   Downloading referencing-0.35.1-py3-none-any.whl.metadata (2.8 kB)
+#8 7.200 Collecting rpds-py==0.22.3 (from -r /tmp/requirements.txt (line 24))
+#8 7.205   Downloading rpds_py-0.22.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.2 kB)
+#8 7.258 Collecting attrs==24.3.0 (from -r /tmp/requirements.txt (line 25))
+#8 7.262   Downloading attrs-24.3.0-py3-none-any.whl.metadata (11 kB)
+#8 8.054 Collecting boto3==1.35.76 (from -r /tmp/requirements.txt (line 26))
+#8 8.058   Downloading boto3-1.35.76-py3-none-any.whl.metadata (6.7 kB)
+#8 8.836 Collecting botocore==1.35.85 (from -r /tmp/requirements.txt (line 27))
+#8 8.841   Downloading botocore-1.35.85-py3-none-any.whl.metadata (5.7 kB)
+#8 8.897 Collecting s3transfer==0.10.4 (from -r /tmp/requirements.txt (line 28))
+#8 8.900   Downloading s3transfer-0.10.4-py3-none-any.whl.metadata (1.7 kB)
+#8 8.985 Collecting jmespath==1.0.1 (from -r /tmp/requirements.txt (line 29))
+#8 8.989   Downloading jmespath-1.0.1-py3-none-any.whl.metadata (7.6 kB)
+#8 9.042 Collecting python-dateutil==2.9.0.post0 (from -r /tmp/requirements.txt (line 30))
+#8 9.045   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+#8 9.125 Collecting six==1.17.0 (from -r /tmp/requirements.txt (line 31))
+#8 9.129   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#8 9.173 Collecting requests==2.32.3 (from -r /tmp/requirements.txt (line 32))
+#8 9.176   Downloading requests-2.32.3-py3-none-any.whl.metadata (4.6 kB)
+#8 9.207 Collecting certifi==2024.12.14 (from -r /tmp/requirements.txt (line 33))
+#8 9.210   Downloading certifi-2024.12.14-py3-none-any.whl.metadata (2.3 kB)
+#8 9.406 Collecting charset-normalizer==3.4.0 (from -r /tmp/requirements.txt (line 34))
+#8 9.410   Downloading charset_normalizer-3.4.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (34 kB)
+#8 9.435 Collecting idna==3.10 (from -r /tmp/requirements.txt (line 35))
+#8 9.438   Downloading idna-3.10-py3-none-any.whl.metadata (10 kB)
+#8 9.578 Collecting urllib3==2.2.3 (from -r /tmp/requirements.txt (line 36))
+#8 9.582   Downloading urllib3-2.2.3-py3-none-any.whl.metadata (6.5 kB)
+#8 9.685 Collecting filelock==3.16.1 (from -r /tmp/requirements.txt (line 37))
+#8 9.689   Downloading filelock-3.16.1-py3-none-any.whl.metadata (2.9 kB)
+#8 9.767 Collecting fsspec==2024.12.0 (from -r /tmp/requirements.txt (line 38))
+#8 9.770   Downloading fsspec-2024.12.0-py3-none-any.whl.metadata (11 kB)
+#8 9.827 Collecting jinja2==3.1.4 (from -r /tmp/requirements.txt (line 39))
+#8 9.831   Downloading https://download.pytorch.org/whl/Jinja2-3.1.4-py3-none-any.whl.metadata (2.6 kB)
+#8 9.933 Collecting markupsafe==3.0.2 (from -r /tmp/requirements.txt (line 40))
+#8 9.937   Downloading https://download.pytorch.org/whl/MarkupSafe-3.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.0 kB)
+#8 9.974 Collecting mpmath==1.3.0 (from -r /tmp/requirements.txt (line 41))
+#8 9.977   Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+#8 10.05 Collecting networkx==3.4.2 (from -r /tmp/requirements.txt (line 42))
+#8 10.05   Downloading networkx-3.4.2-py3-none-any.whl.metadata (6.3 kB)
+#8 10.11 Collecting sympy==1.13.1 (from -r /tmp/requirements.txt (line 43))
+#8 10.11   Downloading sympy-1.13.1-py3-none-any.whl.metadata (12 kB)
+#8 10.36 Collecting setuptools==75.6.0 (from -r /tmp/requirements.txt (line 44))
+#8 10.36   Downloading setuptools-75.6.0-py3-none-any.whl.metadata (6.7 kB)
+#8 10.40 Collecting packaging==24.2 (from -r /tmp/requirements.txt (line 45))
+#8 10.41   Downloading packaging-24.2-py3-none-any.whl.metadata (3.2 kB)
+#8 11.05 Collecting regex==2024.11.6 (from -r /tmp/requirements.txt (line 46))
+#8 11.06   Downloading regex-2024.11.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (40 kB)
+#8 11.24 Collecting tqdm==4.67.1 (from -r /tmp/requirements.txt (line 47))
+#8 11.24   Downloading tqdm-4.67.1-py3-none-any.whl.metadata (57 kB)
+#8 11.30 Collecting typing-extensions==4.12.2 (from -r /tmp/requirements.txt (line 48))
+#8 11.30   Downloading typing_extensions-4.12.2-py3-none-any.whl.metadata (3.0 kB)
+#8 11.36 Downloading transformers-4.46.3-py3-none-any.whl (10.0 MB)
+#8 11.39    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.0/10.0 MB 350.1 MB/s eta 0:00:00
+#8 11.40 Downloading tokenizers-0.20.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+#8 11.40    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.0/3.0 MB 639.6 MB/s eta 0:00:00
+#8 11.41 Downloading safetensors-0.4.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (434 kB)
+#8 11.41 Downloading huggingface_hub-0.26.5-py3-none-any.whl (447 kB)
+#8 11.42 Downloading numpy-2.1.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.0 MB)
+#8 11.44    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.0/16.0 MB 642.6 MB/s eta 0:00:00
+#8 11.45 Downloading PyYAML-6.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (767 kB)
+#8 11.45    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 767.5/767.5 kB 641.7 MB/s eta 0:00:00
+#8 11.45 Downloading fastapi-0.115.5-py3-none-any.whl (94 kB)
+#8 11.46 Downloading starlette-0.41.3-py3-none-any.whl (73 kB)
+#8 11.46 Downloading pydantic-2.10.3-py3-none-any.whl (456 kB)
+#8 11.47 Downloading pydantic_core-2.27.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.2 MB)
+#8 11.48    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 510.0 MB/s eta 0:00:00
+#8 11.48 Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
+#8 11.48 Downloading uvicorn-0.32.1-py3-none-any.whl (63 kB)
+#8 11.49 Downloading click-8.1.7-py3-none-any.whl (97 kB)
+#8 11.49 Downloading h11-0.14.0-py3-none-any.whl (58 kB)
+#8 11.49 Downloading anyio-4.7.0-py3-none-any.whl (93 kB)
+#8 11.50 Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+#8 11.50 Downloading jsonschema-4.23.0-py3-none-any.whl (88 kB)
+#8 11.50 Downloading jsonschema_specifications-2024.10.1-py3-none-any.whl (18 kB)
+#8 11.51 Downloading referencing-0.35.1-py3-none-any.whl (26 kB)
+#8 11.51 Downloading rpds_py-0.22.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (385 kB)
+#8 11.51 Downloading attrs-24.3.0-py3-none-any.whl (63 kB)
+#8 11.52 Downloading boto3-1.35.76-py3-none-any.whl (139 kB)
+#8 11.52 Downloading botocore-1.35.85-py3-none-any.whl (13.3 MB)
+#8 11.55    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.3/13.3 MB 478.3 MB/s eta 0:00:00
+#8 11.56 Downloading s3transfer-0.10.4-py3-none-any.whl (83 kB)
+#8 11.56 Downloading jmespath-1.0.1-py3-none-any.whl (20 kB)
+#8 11.56 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#8 11.57 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#8 11.57 Downloading requests-2.32.3-py3-none-any.whl (64 kB)
+#8 11.57 Downloading certifi-2024.12.14-py3-none-any.whl (164 kB)
+#8 11.58 Downloading charset_normalizer-3.4.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (143 kB)
+#8 11.58 Downloading idna-3.10-py3-none-any.whl (70 kB)
+#8 11.58 Downloading urllib3-2.2.3-py3-none-any.whl (126 kB)
+#8 11.59 Downloading filelock-3.16.1-py3-none-any.whl (16 kB)
+#8 11.59 Downloading fsspec-2024.12.0-py3-none-any.whl (183 kB)
+#8 11.59 Downloading https://download.pytorch.org/whl/Jinja2-3.1.4-py3-none-any.whl (133 kB)
+#8 11.60 Downloading https://download.pytorch.org/whl/MarkupSafe-3.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (23 kB)
+#8 11.60 Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+#8 11.61    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 646.3 MB/s eta 0:00:00
+#8 11.61 Downloading networkx-3.4.2-py3-none-any.whl (1.7 MB)
+#8 11.61    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.7/1.7 MB 622.8 MB/s eta 0:00:00
+#8 11.62 Downloading sympy-1.13.1-py3-none-any.whl (6.2 MB)
+#8 11.63    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.2/6.2 MB 636.4 MB/s eta 0:00:00
+#8 11.63 Downloading setuptools-75.6.0-py3-none-any.whl (1.2 MB)
+#8 11.64    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 698.9 MB/s eta 0:00:00
+#8 11.64 Downloading packaging-24.2-py3-none-any.whl (65 kB)
+#8 11.64 Downloading regex-2024.11.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (796 kB)
+#8 11.65    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 796.9/796.9 kB 524.2 MB/s eta 0:00:00
+#8 11.65 Downloading tqdm-4.67.1-py3-none-any.whl (78 kB)
+#8 11.66 Downloading typing_extensions-4.12.2-py3-none-any.whl (37 kB)
+#8 11.77 Installing collected packages: mpmath, uvicorn, urllib3, typing-extensions, transformers, tqdm, torch, tokenizers, sympy, starlette, sniffio, six, setuptools, safetensors, s3transfer, rpds-py, requests, regex, referencing, pyyaml, python-dateutil, pydantic-core, pydantic, packaging, numpy, networkx, markupsafe, jsonschema-specifications, jsonschema, jmespath, jinja2, idna, huggingface-hub, h11, fsspec, filelock, fastapi, click, charset-normalizer, certifi, botocore, boto3, attrs, anyio, annotated-types
+#8 40.38 Successfully installed annotated-types-0.7.0 anyio-4.7.0 attrs-24.3.0 boto3-1.35.76 botocore-1.35.85 certifi-2024.12.14 charset-normalizer-3.4.0 click-8.1.7 fastapi-0.115.5 filelock-3.16.1 fsspec-2024.12.0 h11-0.14.0 huggingface-hub-0.26.5 idna-3.10 jinja2-3.1.4 jmespath-1.0.1 jsonschema-4.23.0 jsonschema-specifications-2024.10.1 markupsafe-3.0.2 mpmath-1.3.0 networkx-3.4.2 numpy-2.1.3 packaging-24.2 pydantic-2.10.3 pydantic-core-2.27.1 python-dateutil-2.9.0.post0 pyyaml-6.0.2 referencing-0.35.1 regex-2024.11.6 requests-2.32.3 rpds-py-0.22.3 s3transfer-0.10.4 safetensors-0.4.5 setuptools-75.6.0 six-1.17.0 sniffio-1.3.1 starlette-0.41.3 sympy-1.13.1 tokenizers-0.20.3 torch-2.5.1+cpu tqdm-4.67.1 transformers-4.46.3 typing-extensions-4.12.2 urllib3-2.2.3 uvicorn-0.32.1
+#8 40.39 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#8 42.49 No broken requirements found.
+#8 DONE 44.9s
+
+#9 [5/7] COPY service/app.py service/model.py /app/
+#9 DONE 0.0s
+
+#10 [6/7] COPY data/schema.json /app/schema.json
+#10 DONE 0.0s
+
+#11 [7/7] RUN useradd --uid 10001 --no-create-home appuser
+#11 DONE 0.1s
+
+#12 exporting to image
+#12 exporting layers
+#12 exporting layers 3.4s done
+#12 writing image sha256:4560e9211715771cbfc2fbaafd40612a15ccc9543475ea9bd2068ff38612125e done
+#12 naming to docker.io/library/cmdparser-service:1.0 done
+#12 DONE 3.4s
+[36mINFO[0m[0000] Importing image(s) into cluster 'cmdparser'  
+[36mINFO[0m[0000] Starting new tools node...                   
+[36mINFO[0m[0000] Starting node 'k3d-cmdparser-tools'          
+[36mINFO[0m[0000] Saving 1 image(s) from runtime...            
+[36mINFO[0m[0007] Importing images into nodes...               
+[36mINFO[0m[0007] Importing images from tarball '/k3d/images/k3d-cmdparser-images-20261108113717.tar' into node 'k3d-cmdparser-server-0'... 
+[36mINFO[0m[0014] Removing the tarball(s) from image volume... 
+[36mINFO[0m[0015] Removing k3d-tools node...                   
+[36mINFO[0m[0016] Successfully imported image(s)               
+[36mINFO[0m[0016] Successfully imported 1 image(s) into 1 cluster(s) 
+persistentvolumeclaim/seaweedfs-data created
+deployment.apps/seaweedfs created
+service/seaweedfs created
+service/seaweedfs-s3-external created
+Waiting for deployment "seaweedfs" rollout to finish: 0 of 1 updated replicas are available...
+deployment "seaweedfs" successfully rolled out
+job.batch/storage-seed created
+job.batch/storage-seed condition met
+bucket datasets: created
+bucket models: created
+datasets:
+  uploaded data/commands_pool.jsonl -> s3://datasets/commands_pool.jsonl (197541 bytes)
+  uploaded 100 validation command texts -> s3://datasets/eval/validation_texts.jsonl
+  uploaded datasets/teacher/shard-0.jsonl -> s3://datasets/teacher/shard-0.jsonl (43249 bytes)
+  uploaded datasets/teacher/shard-1.jsonl -> s3://datasets/teacher/shard-1.jsonl (43617 bytes)
+  uploaded datasets/teacher/shard-10.jsonl -> s3://datasets/teacher/shard-10.jsonl (43183 bytes)
+  uploaded datasets/teacher/shard-11.jsonl -> s3://datasets/teacher/shard-11.jsonl (43309 bytes)
+  uploaded datasets/teacher/shard-2.jsonl -> s3://datasets/teacher/shard-2.jsonl (43548 bytes)
+  uploaded datasets/teacher/shard-3.jsonl -> s3://datasets/teacher/shard-3.jsonl (43567 bytes)
+  uploaded datasets/teacher/shard-4.jsonl -> s3://datasets/teacher/shard-4.jsonl (43437 bytes)
+  uploaded datasets/teacher/shard-5.jsonl -> s3://datasets/teacher/shard-5.jsonl (43259 bytes)
+  uploaded datasets/teacher/shard-6.jsonl -> s3://datasets/teacher/shard-6.jsonl (43681 bytes)
+  uploaded datasets/teacher/shard-7.jsonl -> s3://datasets/teacher/shard-7.jsonl (43231 bytes)
+  uploaded datasets/teacher/shard-8.jsonl -> s3://datasets/teacher/shard-8.jsonl (44069 bytes)
+  uploaded datasets/teacher/shard-9.jsonl -> s3://datasets/teacher/shard-9.jsonl (43944 bytes)
+  uploaded datasets/v1/train.jsonl -> s3://datasets/v1/train.jsonl (778317 bytes)
+  uploaded datasets/v1/train.sha256 -> s3://datasets/v1/train.sha256 (78 bytes)
+models/v1/ from release model-v1 of rajnikhil259/cloud-computing-assignment:
+  verified config.json sha256=a759486cc8ac7fd7...
+  uploaded ../tmp/models/v1/config.json -> s3://models/v1/config.json (799 bytes)
+  verified generation_config.json sha256=488c1a4387cb693f...
+  uploaded ../tmp/models/v1/generation_config.json -> s3://models/v1/generation_config.json (111 bytes)
+  verified model.safetensors sha256=9cb17035eaf124a4...
+  uploaded ../tmp/models/v1/model.safetensors -> s3://models/v1/model.safetensors (281715176 bytes)
+  verified special_tokens_map.json sha256=57491904f8680d4b...
+  uploaded ../tmp/models/v1/special_tokens_map.json -> s3://models/v1/special_tokens_map.json (473 bytes)
+  verified tokenizer.json sha256=d4c0d99d84af59e9...
+  uploaded ../tmp/models/v1/tokenizer.json -> s3://models/v1/tokenizer.json (3564303 bytes)
+  verified tokenizer_config.json sha256=3e17d197ebe3c73c...
+  uploaded ../tmp/models/v1/tokenizer_config.json -> s3://models/v1/tokenizer_config.json (4846 bytes)
+  verified version.json sha256=e6107cd57585d9d4...
+  uploaded ../tmp/models/v1/version.json -> s3://models/v1/version.json (847 bytes)
+  uploaded ../tmp/models/v1/model.sha256 -> s3://models/v1/model.sha256 (675 bytes)
+models/v2/ from release model-v2 of rajnikhil259/cloud-computing-assignment:
+  verified config.json sha256=a759486cc8ac7fd7...
+  uploaded ../tmp/models/v2/config.json -> s3://models/v2/config.json (799 bytes)
+  verified generation_config.json sha256=488c1a4387cb693f...
+  uploaded ../tmp/models/v2/generation_config.json -> s3://models/v2/generation_config.json (111 bytes)
+  verified model.safetensors sha256=b7c17079ef31f603...
+  uploaded ../tmp/models/v2/model.safetensors -> s3://models/v2/model.safetensors (281715176 bytes)
+  verified special_tokens_map.json sha256=57491904f8680d4b...
+  uploaded ../tmp/models/v2/special_tokens_map.json -> s3://models/v2/special_tokens_map.json (473 bytes)
+  verified tokenizer.json sha256=d4c0d99d84af59e9...
+  uploaded ../tmp/models/v2/tokenizer.json -> s3://models/v2/tokenizer.json (3564303 bytes)
+  verified tokenizer_config.json sha256=3e17d197ebe3c73c...
+  uploaded ../tmp/models/v2/tokenizer_config.json -> s3://models/v2/tokenizer_config.json (4846 bytes)
+  verified version.json sha256=9d5bcb7ccea36632...
+  uploaded ../tmp/models/v2/version.json -> s3://models/v2/version.json (848 bytes)
+  uploaded ../tmp/models/v2/model.sha256 -> s3://models/v2/model.sha256 (675 bytes)
+
+object storage contents:
+  s3://datasets/commands_pool.jsonl  197541
+  s3://datasets/eval/validation_texts.jsonl  6423
+  s3://datasets/teacher/shard-0.jsonl  43249
+  s3://datasets/teacher/shard-1.jsonl  43617
+  s3://datasets/teacher/shard-10.jsonl  43183
+  s3://datasets/teacher/shard-11.jsonl  43309
+  s3://datasets/teacher/shard-2.jsonl  43548
+  s3://datasets/teacher/shard-3.jsonl  43567
+  s3://datasets/teacher/shard-4.jsonl  43437
+  s3://datasets/teacher/shard-5.jsonl  43259
+  s3://datasets/teacher/shard-6.jsonl  43681
+  s3://datasets/teacher/shard-7.jsonl  43231
+  s3://datasets/teacher/shard-8.jsonl  44069
+  s3://datasets/teacher/shard-9.jsonl  43944
+  s3://datasets/v1/train.jsonl  778317
+  s3://datasets/v1/train.sha256  78
+  s3://models/v1/config.json  799
+  s3://models/v1/generation_config.json  111
+  s3://models/v1/model.safetensors  281715176
+  s3://models/v1/model.sha256  675
+  s3://models/v1/special_tokens_map.json  473
+  s3://models/v1/tokenizer.json  3564303
+  s3://models/v1/tokenizer_config.json  4846
+  s3://models/v1/version.json  847
+  s3://models/v2/config.json  799
+  s3://models/v2/generation_config.json  111
+  s3://models/v2/model.safetensors  281715176
+  s3://models/v2/model.sha256  675
+  s3://models/v2/special_tokens_map.json  473
+  s3://models/v2/tokenizer.json  3564303
+  s3://models/v2/tokenizer_config.json  4846
+  s3://models/v2/version.json  848
+deployment.apps/cmdparser created
+horizontalpodautoscaler.autoscaling/cmdparser created
+ingress.networking.k8s.io/cmdparser created
+service/cmdparser created
+Waiting for deployment "cmdparser" rollout to finish: 0 of 2 updated replicas are available...
+Waiting for deployment "cmdparser" rollout to finish: 1 of 2 updated replicas are available...
+deployment "cmdparser" successfully rolled out
+[11:38:42] waiting for /parse through the Traefik ingress at http://localhost:8080
+HTTP/1.1 200 OK
+Content-Length: 78
+Content-Type: application/json
+Date: Sun, 08 Nov 2026 11:38:44 GMT
+Server: uvicorn
+X-Model-Version: v1
+X-Served-By: cmdparser-6795bc857b-hv69l
+
+{"intent":"alarm_set","date":"tomorrow","time":"seven thirty am","place":null}
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                  SELECTOR
+deployment.apps/cmdparser   2/2     2            2           15s   cmdparser    cmdparser-service:1.0   app=cmdparser
+
+NAME                                   DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES                  SELECTOR
+replicaset.apps/cmdparser-6795bc857b   2         2         2       15s   cmdparser    cmdparser-service:1.0   app=cmdparser,pod-template-hash=6795bc857b
+
+NAME                             READY   STATUS    RESTARTS   AGE   IP           NODE                     NOMINATED NODE   READINESS GATES
+pod/cmdparser-6795bc857b-c8w8b   1/1     Running   0          15s   10.42.0.14   k3d-cmdparser-server-0   <none>           <none>
+pod/cmdparser-6795bc857b-hv69l   1/1     Running   0          15s   10.42.0.13   k3d-cmdparser-server-0   <none>           <none>
+
+NAME                TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE   SELECTOR
+service/cmdparser   ClusterIP   10.43.183.96   <none>        80/TCP    15s   app=cmdparser
+
+NAME                                  CLASS     HOSTS   ADDRESS      PORTS   AGE
+ingress.networking.k8s.io/cmdparser   traefik   *       172.18.0.2   80      15s
+
+NAME                                            REFERENCE              TARGETS              MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/cmdparser   Deployment/cmdparser   cpu: <unknown>/70%   1         2         2          15s
+[11:38:45] done. Try: curl -s -X POST http://localhost:8080/parse -H 'Content-Type: application/json' -d '{"text": "what time is it in tokyo"}'
+make up finished in 175 s
