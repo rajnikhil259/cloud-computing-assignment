@@ -12,6 +12,18 @@ replies are used to fine-tune `EleutherAI/pythia-70m` on the CPU (sequence-level
 is served by a FastAPI container that downloads its weights from SeaweedFS (S3) at start-up and runs on a local
 k3d (k3s) cluster behind the Traefik Ingress, with probes, an HPA, rolling updates and a NACL/subnet design.
 
+## Results at a glance (measured; details and evidence in `report/report.pdf` and `results/`)
+
+| Task | Result | Evidence |
+|---|---|---|
+| 1 Teacher labelling | 3,000 commands, 12 shards (6 k3d clusters × 2 workers); kept 2,757 (a 4, b 42, c 0, d 152, dup 45); `train.sha256` reproduced | `results/task1/` |
+| 2 Distillation | Validation full frame: teacher 58 %, untrained Pythia 0 %, student v1 **50 %** (100 % valid JSON), v2 51 % | `results/*_validation.json`, `training/loss*.csv` |
+| 3 Container | Image 0.948 GB, no weights; 50 sequential requests at 1 CPU / 1 GiB all 200, peak 651 MiB; FAULT_INJECT → 500 | `results/task3/` |
+| 4 Kubernetes | Cold start median 14 s; load split 49.9 / 50.1 %; rolling update 0.22 % failed; recovery 0 failed; HPA 1→2→1 | `results/task4/` |
+| 5 Network | Subnets /22, /24, /25, /27; NACL 6/6 sample and 24/24 extra packets | `network/`, `results/task5/` |
+| 6 CI/CD | `make up` in 175 s; CI passes with model-v1; [quality gate fails with the untrained model](https://github.com/rajnikhil259/cloud-computing-assignment/actions/runs/42475510183); gitleaks: no leaks | `results/task6/` |
+| 7 Performance | p50 850 ms, p95 1,000 ms, 4.68 req/s, 0 % errors; ₹0.469 per 1,000 requests; SLO 99 % met | `results/loadtest_*`, `results/task7/` |
+
 ## Repository layout
 
 | Path | What it is |
