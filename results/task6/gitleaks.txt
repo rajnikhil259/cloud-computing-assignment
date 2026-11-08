@@ -1,0 +1,5 @@
+# https://github.com/rajnikhil259/cloud-computing-assignment/actions/runs/42475512196  (job "1 · lint + secret scan")
+# gitleaks v8.21.2 detect --source . --redact --verbose (full git history)
+11:23AM INF 11 commits scanned.
+11:23AM INF scan completed in 610ms
+11:23AM INF no leaks found

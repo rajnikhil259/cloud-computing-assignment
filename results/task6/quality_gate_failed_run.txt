@@ -1,0 +1,15 @@
+# https://github.com/rajnikhil259/cloud-computing-assignment/actions/runs/42475510183  (job "4 · quality gate")
+# MODEL_TAG=model-base — the untrained EleutherAI/pythia-70m from the GitHub Release model-base
+2026-11-08T11:24:40.4571928Z ##[group]Run python3 tools/score.py eval/predictions.jsonl data/validation.jsonl --min-validity 95
+2026-11-08T11:24:40.4933376Z QUALITY GATE FAILED: json_validity 0.0 < 95.0
+{
+  "json_validity": 0.0,
+  "intent_accuracy": 0.0,
+  "date_accuracy": 0.0,
+  "time_accuracy": 0.0,
+  "place_accuracy": 0.0,
+  "full_frame": 0.0,
+  "examples": 100,
+  "missing_predictions": 0
+}
+2026-11-08T11:24:40.5030107Z ##[error]Process completed with exit code 1.

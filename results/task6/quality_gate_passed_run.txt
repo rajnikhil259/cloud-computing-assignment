@@ -1,0 +1,14 @@
+# https://github.com/rajnikhil259/cloud-computing-assignment/actions/runs/42475512196  (job "4 · quality gate")
+# MODEL_TAG=model-v1 — downloaded from the GitHub Release model-v1, `sha256sum -c model.sha256` OK
+2026-11-08T11:25:23.8467003Z ##[group]Run python3 tools/score.py eval/predictions.jsonl data/validation.jsonl --min-validity 95
+{
+  "json_validity": 100.0,
+  "intent_accuracy": 87.0,
+  "date_accuracy": 81.0,
+  "time_accuracy": 87.0,
+  "place_accuracy": 84.0,
+  "full_frame": 50.0,
+  "examples": 100,
+  "missing_predictions": 0
+}
+(exit code 0)
