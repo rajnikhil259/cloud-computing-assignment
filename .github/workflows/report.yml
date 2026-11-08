@@ -1,3 +1,4 @@
+# Started from the Actions tab ("Run workflow"); see README.md for the order of the workflows.
 # Builds report/report.pdf from report/report.md (pandoc -> HTML -> headless Chrome PDF) and commits it.
 name: build-report
 

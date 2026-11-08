@@ -1,3 +1,4 @@
+# Started from the Actions tab ("Run workflow"); see README.md for the order of the workflows.
 # Tasks 4, 6 and 7 on a fresh runner: `make up` from a clean checkout, then the Kubernetes
 # experiments (ingress, readiness gating, cold starts, load balancing / standard load test,
 # rolling update + rollback under load, pod recovery under load, HPA 1 -> 2 -> 1),

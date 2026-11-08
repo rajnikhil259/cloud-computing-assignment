@@ -1,3 +1,4 @@
+# Started from the Actions tab ("Run workflow"); see README.md for the order of the workflows.
 # Task 3: build the inference image and test it as a plain container at 1 CPU / 1 GiB.
 name: service-container
 

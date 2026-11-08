@@ -1,3 +1,4 @@
+# Started from the Actions tab ("Run workflow"); see README.md for the order of the workflows.
 # Builds the single submission file <roll_number>.zip and tags the submission commit as `final`.
 # The zip contains (at its top level):
 #   <roll_number>.pdf        the scanned handwritten reflection (commit it at the repository root first)

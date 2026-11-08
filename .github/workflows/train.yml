@@ -1,3 +1,4 @@
+# Started from the Actions tab ("Run workflow"); see README.md for the order of the workflows.
 # Task 2: train the student (v1 and v2), publish the models as GitHub Release assets, store them
 # in SeaweedFS (models/v1/, models/v2/) and evaluate teacher-vs-base-vs-student on validation.jsonl.
 name: train-and-release

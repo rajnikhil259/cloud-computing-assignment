@@ -1,3 +1,4 @@
+# Started from the Actions tab ("Run workflow"); see README.md for the order of the workflows.
 # Task 1: parallel teacher labelling with phi3.5 (Ollama) inside k3d, then cleaning.
 #
 # mode=validation  labels the 100 validation commands (teacher baseline for Task 2)
