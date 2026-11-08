@@ -1,0 +1,9 @@
+# 2026-11-08T09:45:18Z  workers running at the same time in namespace pipeline
+NAME                             READY   STATUS    RESTARTS   AGE   IP           NODE                     NOMINATED NODE   READINESS GATES
+ollama-846db7d996-4tx79          1/1     Running   0          60s   10.42.0.13   k3d-cmdparser-server-0   <none>           <none>
+teacher-worker-pool-r3-6-hl5sk   1/1     Running   0          20s   10.42.0.14   k3d-cmdparser-server-0   <none>           <none>
+teacher-worker-pool-r3-7-s4nxk   1/1     Running   0          20s   10.42.0.15   k3d-cmdparser-server-0   <none>           <none>
+
+POD                              SHARD_INDEX   SHARD_COUNT   PHASE     START
+teacher-worker-pool-r3-6-hl5sk   6             12            Running   2026-11-08T09:44:58Z
+teacher-worker-pool-r3-7-s4nxk   7             12            Running   2026-11-08T09:44:58Z

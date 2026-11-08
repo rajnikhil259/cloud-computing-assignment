@@ -1,0 +1,42 @@
+persistentvolumeclaim/seaweedfs-data created
+deployment.apps/seaweedfs created
+service/seaweedfs created
+service/seaweedfs-s3-external created
+Waiting for deployment "seaweedfs" rollout to finish: 0 of 1 updated replicas are available...
+deployment "seaweedfs" successfully rolled out
+job.batch/storage-seed created
+job.batch/storage-seed condition met
+bucket datasets: created
+bucket models: created
+datasets:
+  uploaded data/commands_pool.jsonl -> s3://datasets/commands_pool.jsonl (197541 bytes)
+  uploaded 100 validation command texts -> s3://datasets/eval/validation_texts.jsonl
+  uploaded datasets/teacher/shard-0.jsonl -> s3://datasets/teacher/shard-0.jsonl (43249 bytes)
+  uploaded datasets/teacher/shard-1.jsonl -> s3://datasets/teacher/shard-1.jsonl (43617 bytes)
+  uploaded datasets/teacher/shard-10.jsonl -> s3://datasets/teacher/shard-10.jsonl (43183 bytes)
+  uploaded datasets/teacher/shard-11.jsonl -> s3://datasets/teacher/shard-11.jsonl (43309 bytes)
+  uploaded datasets/teacher/shard-2.jsonl -> s3://datasets/teacher/shard-2.jsonl (43548 bytes)
+  uploaded datasets/teacher/shard-3.jsonl -> s3://datasets/teacher/shard-3.jsonl (43567 bytes)
+  uploaded datasets/teacher/shard-4.jsonl -> s3://datasets/teacher/shard-4.jsonl (43437 bytes)
+  uploaded datasets/teacher/shard-5.jsonl -> s3://datasets/teacher/shard-5.jsonl (43259 bytes)
+  uploaded datasets/teacher/shard-6.jsonl -> s3://datasets/teacher/shard-6.jsonl (43681 bytes)
+  uploaded datasets/teacher/shard-7.jsonl -> s3://datasets/teacher/shard-7.jsonl (43231 bytes)
+  uploaded datasets/teacher/shard-8.jsonl -> s3://datasets/teacher/shard-8.jsonl (44069 bytes)
+  uploaded datasets/teacher/shard-9.jsonl -> s3://datasets/teacher/shard-9.jsonl (43944 bytes)
+model seeding skipped (SEED_MODELS=0, MODEL_RELEASE_REPO='rajnikhil259/cloud-computing-assignment')
+
+object storage contents:
+  s3://datasets/commands_pool.jsonl  197541
+  s3://datasets/eval/validation_texts.jsonl  6423
+  s3://datasets/teacher/shard-0.jsonl  43249
+  s3://datasets/teacher/shard-1.jsonl  43617
+  s3://datasets/teacher/shard-10.jsonl  43183
+  s3://datasets/teacher/shard-11.jsonl  43309
+  s3://datasets/teacher/shard-2.jsonl  43548
+  s3://datasets/teacher/shard-3.jsonl  43567
+  s3://datasets/teacher/shard-4.jsonl  43437
+  s3://datasets/teacher/shard-5.jsonl  43259
+  s3://datasets/teacher/shard-6.jsonl  43681
+  s3://datasets/teacher/shard-7.jsonl  43231
+  s3://datasets/teacher/shard-8.jsonl  44069
+  s3://datasets/teacher/shard-9.jsonl  43944

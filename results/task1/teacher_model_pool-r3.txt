@@ -1,0 +1,22 @@
+  Model
+    architecture        phi3      
+    parameters          3.8B      
+    context length      131072    
+    embedding length    3072      
+    quantization        Q4_0      
+
+  Capabilities
+    completion    
+
+  Parameters
+    stop    "<|system|>"       
+    stop    "<|user|>"         
+    stop    "<|end|>"          
+    stop    "<|assistant|>"    
+
+  License
+    MIT License                             
+    Copyright (c) Microsoft Corporation.    
+    ...                                     
+
+ollama version is 0.9.6

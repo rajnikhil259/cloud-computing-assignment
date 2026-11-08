@@ -1,0 +1,15 @@
+NAME                     STATUS   ROLES                  AGE   VERSION        INTERNAL-IP   EXTERNAL-IP   OS-IMAGE           KERNEL-VERSION     CONTAINER-RUNTIME
+k3d-cmdparser-server-0   Ready    control-plane,master   65s   v1.31.4+k3s1   172.18.0.2    <none>        K3s v1.31.4+k3s1   7.0.0-1017-azure   containerd://1.7.23-k3s2
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                     SELECTOR
+deployment.apps/seaweedfs   1/1     1            1           36s   seaweedfs    chrislusf/seaweedfs:3.80   app=seaweedfs
+
+NAME                             READY   STATUS      RESTARTS   AGE   IP           NODE                     NOMINATED NODE   READINESS GATES
+pod/seaweedfs-85cbfd6df4-czbc2   1/1     Running     0          36s   10.42.0.11   k3d-cmdparser-server-0   <none>           <none>
+pod/storage-seed-gks55           0/1     Completed   0          6s    10.42.0.12   k3d-cmdparser-server-0   <none>           <none>
+
+NAME                            TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)                      AGE   SELECTOR
+service/seaweedfs               ClusterIP      10.43.32.35   <none>        8333/TCP,8888/TCP,9333/TCP   36s   app=seaweedfs
+service/seaweedfs-s3-external   LoadBalancer   10.43.6.92    172.18.0.2    8333:31559/TCP               36s   app=seaweedfs
+
+NAME                                   STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE   VOLUMEMODE
+persistentvolumeclaim/seaweedfs-data   Bound    pvc-8aac424b-d7ba-423c-ac00-955ff646c0bd   10Gi       RWO            local-path     <unset>                 36s   Filesystem

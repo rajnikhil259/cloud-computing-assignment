@@ -1,0 +1,21 @@
+NAME                        STATUS   AGE
+namespace/app               Active   70s
+namespace/data              Active   70s
+namespace/default           Active   80s
+namespace/kube-node-lease   Active   80s
+namespace/kube-public       Active   80s
+namespace/kube-system       Active   80s
+namespace/pipeline          Active   70s
+
+NAMESPACE     NAME                                             READY   STATUS      RESTARTS   AGE   IP           NODE                     NOMINATED NODE   READINESS GATES
+data          pod/seaweedfs-85cbfd6df4-rqpn2                   1/1     Running     0          51s   10.42.0.11   k3d-cmdparser-server-0   <none>           <none>
+data          pod/storage-seed-lhkj5                           0/1     Completed   0          11s   10.42.0.12   k3d-cmdparser-server-0   <none>           <none>
+kube-system   pod/coredns-ccb96694c-lmnjb                      1/1     Running     0          73s   10.42.0.4    k3d-cmdparser-server-0   <none>           <none>
+kube-system   pod/helm-install-traefik-crd-lc7lc               0/1     Completed   0          73s   10.42.0.6    k3d-cmdparser-server-0   <none>           <none>
+kube-system   pod/helm-install-traefik-mbsf7                   0/1     Completed   1          73s   10.42.0.3    k3d-cmdparser-server-0   <none>           <none>
+kube-system   pod/local-path-provisioner-5cf85fd84d-tf5fz      1/1     Running     0          73s   10.42.0.2    k3d-cmdparser-server-0   <none>           <none>
+kube-system   pod/metrics-server-5985cbc9d7-kvrzr              1/1     Running     0          73s   10.42.0.5    k3d-cmdparser-server-0   <none>           <none>
+kube-system   pod/svclb-seaweedfs-s3-external-4c84769c-2gpbm   1/1     Running     0          51s   10.42.0.9    k3d-cmdparser-server-0   <none>           <none>
+kube-system   pod/svclb-traefik-1d98c64b-rzdmv                 2/2     Running     0          64s   10.42.0.7    k3d-cmdparser-server-0   <none>           <none>
+kube-system   pod/traefik-57b79cf995-6qlbq                     1/1     Running     0          64s   10.42.0.8    k3d-cmdparser-server-0   <none>           <none>
+pipeline      pod/clean-dataset-p6xjw                          0/1     Completed   0          6s    10.42.0.13   k3d-cmdparser-server-0   <none>           <none>

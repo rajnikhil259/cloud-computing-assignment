@@ -1,0 +1,34 @@
+{
+  "input_records": 3000,
+  "a_invalid_json": 4,
+  "b_wrong_keys": 42,
+  "c_bad_intent": 0,
+  "d_bad_slot": 152,
+  "e_duplicate": 45,
+  "kept": 2757,
+  "identity_holds": true,
+  "train_sha256": "f536dfca7b66c4b16da37fc04815daeed9f2fee02381e48315f70515f37b64d0",
+  "first_1500_last_id": "C1618",
+  "coverage": {
+    "shards": {
+      "shard-0.jsonl": 250,
+      "shard-1.jsonl": 250,
+      "shard-2.jsonl": 250,
+      "shard-3.jsonl": 250,
+      "shard-4.jsonl": 250,
+      "shard-5.jsonl": 250,
+      "shard-6.jsonl": 250,
+      "shard-7.jsonl": 250,
+      "shard-8.jsonl": 250,
+      "shard-9.jsonl": 250,
+      "shard-10.jsonl": 250,
+      "shard-11.jsonl": 250
+    },
+    "records_in_shards": 3000,
+    "pool_records": 3000,
+    "missing_ids": [],
+    "repeated_ids": [],
+    "unexpected_ids": [],
+    "ok": true
+  }
+}

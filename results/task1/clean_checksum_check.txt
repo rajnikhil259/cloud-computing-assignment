@@ -1,0 +1,5 @@
+train.sha256 from the clean Job in the cluster:
+f536dfca7b66c4b16da37fc04815daeed9f2fee02381e48315f70515f37b64d0  train.jsonl
+train.sha256 from re-running worker/clean.py locally:
+f536dfca7b66c4b16da37fc04815daeed9f2fee02381e48315f70515f37b64d0  train.jsonl
+train.jsonl: OK

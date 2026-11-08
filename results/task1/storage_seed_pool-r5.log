@@ -1,0 +1,18 @@
+persistentvolumeclaim/seaweedfs-data created
+deployment.apps/seaweedfs created
+service/seaweedfs created
+service/seaweedfs-s3-external created
+Waiting for deployment "seaweedfs" rollout to finish: 0 of 1 updated replicas are available...
+deployment "seaweedfs" successfully rolled out
+job.batch/storage-seed created
+job.batch/storage-seed condition met
+bucket datasets: created
+bucket models: created
+datasets:
+  uploaded data/commands_pool.jsonl -> s3://datasets/commands_pool.jsonl (197541 bytes)
+  uploaded 100 validation command texts -> s3://datasets/eval/validation_texts.jsonl
+model seeding skipped (SEED_MODELS=0, MODEL_RELEASE_REPO='rajnikhil259/cloud-computing-assignment')
+
+object storage contents:
+  s3://datasets/commands_pool.jsonl  197541
+  s3://datasets/eval/validation_texts.jsonl  6423

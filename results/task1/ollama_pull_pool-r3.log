@@ -1,0 +1,5 @@
+[GIN] 2026/11/08 - 09:44:50 | 200 | 11.732503417s |       127.0.0.1 | POST     "/api/pull"
+[GIN] 2026/11/08 - 09:44:50 | 200 |       19.97µs |       127.0.0.1 | HEAD     "/"
+[GIN] 2026/11/08 - 09:44:50 | 200 |     226.616µs |       127.0.0.1 | GET      "/api/tags"
+NAME             ID              SIZE      MODIFIED               
+phi3.5:latest    61819fb370a3    2.2 GB    Less than a second ago    
