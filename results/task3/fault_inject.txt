@@ -1,0 +1,12 @@
+container started with FAULT_INJECT=1
+$ curl -i -X POST http://localhost:8001/parse -d '{"text": "what is the weather in london"}'
+HTTP/1.1 500 Internal Server Error
+date: Sun, 08 Nov 2026 11:25:15 GMT
+server: uvicorn
+x-model-version: v1
+x-served-by: aa1ebaadb678
+content-length: 32
+content-type: application/json
+
+{"error":"invalid_model_output"}
+2026-11-08 11:25:16,458 WARNING invalid model output for 'what is the weather in london': 'not json'

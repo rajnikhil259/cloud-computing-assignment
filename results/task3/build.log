@@ -1,0 +1,15 @@
+#10 [5/7] COPY service/app.py service/model.py /app/
+#10 DONE 0.0s
+
+#11 [6/7] COPY data/schema.json /app/schema.json
+#11 DONE 0.0s
+
+#12 [7/7] RUN useradd --uid 10001 --no-create-home appuser
+#12 DONE 0.1s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 3.3s done
+#13 writing image sha256:3dd4175b91984e26dd07a3e9ef56acf5bd789000b21a5fcc93b254ce6e1a9f25 done
+#13 naming to docker.io/library/cmdparser-service:1.0 done
+#13 DONE 3.3s

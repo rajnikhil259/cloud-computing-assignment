@@ -1,0 +1,8 @@
+container limits: NanoCpus=1000000000 Memory=1073741824 MemorySwap=1073741824
+state after the test: Status=running OOMKilled=false RestartCount=0 ExitCode=0
+cgroup memory.peak (bytes, highest usage since the container started):
+682262528
+cgroup memory.current (bytes): 678866944
+cgroup memory.events: low 0 high 0 max 0 oom 0 oom_kill 0 oom_group_kill 0 sock_throttled 0 
+highest 'docker stats' sample during the 50 requests:
+  11:25:03 t3-svc 100.46% 374.6MiB / 1GiB  -> 374.6 MiB

@@ -1,0 +1,10 @@
+files under /app:
+total 24
+drwxr-xr-x 1 root root 4096 Nov  8 11:23 .
+drwxr-xr-x 1 root root 4096 Nov  8 11:24 ..
+-rw-r--r-- 1 root root 7377 Nov  8 11:23 app.py
+-rw-r--r-- 1 root root 2912 Nov  8 11:23 model.py
+-rw-r--r-- 1 root root 1413 Nov  8 11:23 schema.json
+
+model weight files anywhere in the image (outside Python packages):
+  (end of list)

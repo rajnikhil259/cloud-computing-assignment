@@ -1,0 +1,61 @@
+bucket datasets: created
+bucket models: created
+datasets:
+  uploaded data/commands_pool.jsonl -> s3://datasets/commands_pool.jsonl (197541 bytes)
+  uploaded 100 validation command texts -> s3://datasets/eval/validation_texts.jsonl
+  uploaded datasets/teacher/shard-0.jsonl -> s3://datasets/teacher/shard-0.jsonl (43249 bytes)
+  uploaded datasets/teacher/shard-1.jsonl -> s3://datasets/teacher/shard-1.jsonl (43617 bytes)
+  uploaded datasets/teacher/shard-10.jsonl -> s3://datasets/teacher/shard-10.jsonl (43183 bytes)
+  uploaded datasets/teacher/shard-11.jsonl -> s3://datasets/teacher/shard-11.jsonl (43309 bytes)
+  uploaded datasets/teacher/shard-2.jsonl -> s3://datasets/teacher/shard-2.jsonl (43548 bytes)
+  uploaded datasets/teacher/shard-3.jsonl -> s3://datasets/teacher/shard-3.jsonl (43567 bytes)
+  uploaded datasets/teacher/shard-4.jsonl -> s3://datasets/teacher/shard-4.jsonl (43437 bytes)
+  uploaded datasets/teacher/shard-5.jsonl -> s3://datasets/teacher/shard-5.jsonl (43259 bytes)
+  uploaded datasets/teacher/shard-6.jsonl -> s3://datasets/teacher/shard-6.jsonl (43681 bytes)
+  uploaded datasets/teacher/shard-7.jsonl -> s3://datasets/teacher/shard-7.jsonl (43231 bytes)
+  uploaded datasets/teacher/shard-8.jsonl -> s3://datasets/teacher/shard-8.jsonl (44069 bytes)
+  uploaded datasets/teacher/shard-9.jsonl -> s3://datasets/teacher/shard-9.jsonl (43944 bytes)
+  uploaded datasets/v1/train.jsonl -> s3://datasets/v1/train.jsonl (778317 bytes)
+  uploaded datasets/v1/train.sha256 -> s3://datasets/v1/train.sha256 (78 bytes)
+models/v1/ from release model-v1 of rajnikhil259/cloud-computing-assignment:
+  verified config.json sha256=a759486cc8ac7fd7...
+  uploaded ../tmp/models/v1/config.json -> s3://models/v1/config.json (799 bytes)
+  verified generation_config.json sha256=488c1a4387cb693f...
+  uploaded ../tmp/models/v1/generation_config.json -> s3://models/v1/generation_config.json (111 bytes)
+  verified model.safetensors sha256=9cb17035eaf124a4...
+  uploaded ../tmp/models/v1/model.safetensors -> s3://models/v1/model.safetensors (281715176 bytes)
+  verified special_tokens_map.json sha256=57491904f8680d4b...
+  uploaded ../tmp/models/v1/special_tokens_map.json -> s3://models/v1/special_tokens_map.json (473 bytes)
+  verified tokenizer.json sha256=d4c0d99d84af59e9...
+  uploaded ../tmp/models/v1/tokenizer.json -> s3://models/v1/tokenizer.json (3564303 bytes)
+  verified tokenizer_config.json sha256=3e17d197ebe3c73c...
+  uploaded ../tmp/models/v1/tokenizer_config.json -> s3://models/v1/tokenizer_config.json (4846 bytes)
+  verified version.json sha256=e6107cd57585d9d4...
+  uploaded ../tmp/models/v1/version.json -> s3://models/v1/version.json (847 bytes)
+  uploaded ../tmp/models/v1/model.sha256 -> s3://models/v1/model.sha256 (675 bytes)
+
+object storage contents:
+  s3://datasets/commands_pool.jsonl  197541
+  s3://datasets/eval/validation_texts.jsonl  6423
+  s3://datasets/teacher/shard-0.jsonl  43249
+  s3://datasets/teacher/shard-1.jsonl  43617
+  s3://datasets/teacher/shard-10.jsonl  43183
+  s3://datasets/teacher/shard-11.jsonl  43309
+  s3://datasets/teacher/shard-2.jsonl  43548
+  s3://datasets/teacher/shard-3.jsonl  43567
+  s3://datasets/teacher/shard-4.jsonl  43437
+  s3://datasets/teacher/shard-5.jsonl  43259
+  s3://datasets/teacher/shard-6.jsonl  43681
+  s3://datasets/teacher/shard-7.jsonl  43231
+  s3://datasets/teacher/shard-8.jsonl  44069
+  s3://datasets/teacher/shard-9.jsonl  43944
+  s3://datasets/v1/train.jsonl  778317
+  s3://datasets/v1/train.sha256  78
+  s3://models/v1/config.json  799
+  s3://models/v1/generation_config.json  111
+  s3://models/v1/model.safetensors  281715176
+  s3://models/v1/model.sha256  675
+  s3://models/v1/special_tokens_map.json  473
+  s3://models/v1/tokenizer.json  3564303
+  s3://models/v1/tokenizer_config.json  4846
+  s3://models/v1/version.json  847

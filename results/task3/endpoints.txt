@@ -1,0 +1,39 @@
+$ curl -i http://localhost:8000/healthz
+HTTP/1.1 200 OK
+date: Sun, 08 Nov 2026 11:24:44 GMT
+server: uvicorn
+content-length: 18
+content-type: application/json
+
+{"status":"alive"}
+
+$ curl -i http://localhost:8000/readyz
+HTTP/1.1 200 OK
+date: Sun, 08 Nov 2026 11:24:44 GMT
+server: uvicorn
+content-length: 39
+content-type: application/json
+
+{"status":"ready","model_version":"v1"}
+
+$ curl -i -X POST http://localhost:8000/parse -d '{"text": "set an alarm for seven thirty am tomorrow"}'
+HTTP/1.1 200 OK
+date: Sun, 08 Nov 2026 11:24:44 GMT
+server: uvicorn
+x-model-version: v1
+x-served-by: bd3d2a3788e5
+content-length: 78
+content-type: application/json
+
+{"intent":"alarm_set","date":"tomorrow","time":"seven thirty am","place":null}
+
+$ curl -i -X POST http://localhost:8000/parse -d '{"text": "what is the weather in london"}'
+HTTP/1.1 200 OK
+date: Sun, 08 Nov 2026 11:24:44 GMT
+server: uvicorn
+x-model-version: v1
+x-served-by: bd3d2a3788e5
+content-length: 67
+content-type: application/json
+
+{"intent":"weather_query","date":null,"time":null,"place":"london"}

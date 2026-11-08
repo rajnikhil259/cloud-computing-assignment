@@ -1,0 +1,52 @@
+ 1 200   385.7 ms  'remove the upcoming calendar event' -> {"intent":"calendar_remove","date":null,"time":null,"place":null}
+ 2 200   475.1 ms  'need an alarm set for sunday at five in the morning' -> {"intent":"alarm_query","date":"sunday","time":"five in the morning","place":null}
+ 3 200   396.5 ms  'give me the time at washington right now' -> {"intent":"datetime_query","date":null,"time":null,"place":"washington"}
+ 4 200   366.4 ms  'what time does mondays meeting start' -> {"intent":"calendar_query","date":null,"time":null,"place":null}
+ 5 200   436.2 ms  'set my alarm for tuesday at six pm' -> {"intent":"alarm_set","date":"tuesday","time":"six pm","place":null}
+ 6 200   396.6 ms  'remind me about my meeting this afternoon please' -> {"intent":"calendar_set","date":"this afternoon","time":null,"place":null}
+ 7 200   427.5 ms  'what day of the week is november fourteenth' -> {"intent":"datetime_query","date":"march fourteenth","time":null,"place":null}
+ 8 200   389.1 ms  'do i have any appointments this weekend' -> {"intent":"calendar_query","date":"this weekend","time":null,"place":null}
+ 9 200   412.3 ms  'what time is it in the central time zone' -> {"intent":"datetime_query","date":null,"time":"central time zone","place":null}
+10 200   363.4 ms  "when is dale's birthday" -> {"intent":"datetime_query","date":null,"time":null,"place":null}
+11 200   389.2 ms  "how's the weather going to be this week" -> {"intent":"weather_query","date":"this week","time":null,"place":null}
+12 200   387.4 ms  'give me the time in pst' -> {"intent":"datetime_query","date":null,"time":null,"place":"p t"}
+13 200   407.4 ms  'any activity in the area' -> {"intent":"recommendation_events","date":null,"time":null,"place":"area"}
+14 200   379.5 ms  'read my next reminders for this afternoon' -> {"intent":"calendar_query","date":"next","time":null,"place":null}
+15 200   379.6 ms  'delete my whole calendar for today' -> {"intent":"calendar_remove","date":"today","time":null,"place":null}
+16 200   362.1 ms  'format data from calendar' -> {"intent":"calendar_query","date":null,"time":null,"place":null}
+17 200   404.3 ms  'wake me up at this time' -> {"intent":"alarm_set","date":null,"time":"at time","place":null}
+18 200   457.5 ms  "remind me of my sister's birthday party tomorrow an hour before it starts" -> {"intent":"calendar_set","date":"tomorrow morning","time":"one hour before","place":null}
+19 200   359.3 ms  'what time is the next event scheduled' -> {"intent":"calendar_query","date":null,"time":null,"place":null}
+20 200   400.4 ms  'alexa state the weather in our city' -> {"intent":"weather_query","date":null,"time":null,"place":"our city"}
+21 200   393.8 ms  "what's going on around me" -> {"intent":"recommendation_events","date":null,"time":null,"place":null}
+22 200   368.2 ms  'remind me for making call to all participants' -> {"intent":"calendar_set","date":null,"time":null,"place":null}
+23 200   423.1 ms  "set bob's birthday for every june third" -> {"intent":"calendar_set","date":"every june third","time":null,"place":null}
+24 200   536.9 ms  "what date is justin's school play" -> {"intent":"recommendation_events","date":null,"time":null,"place":null}
+25 200   428.1 ms  'what time is it now in new york' -> {"intent":"datetime_query","date":null,"time":"now","place":"new york"}
+26 200   461.2 ms  'what is the five days forecast looking like in new york city' -> {"intent":"weather_query","date":null,"time":"five days","place":"new york city"}
+27 200   380.2 ms  'what meetings are on my calendar today' -> {"intent":"calendar_query","date":"today","time":null,"place":null}
+28 200   382.7 ms  'what is the weather at home' -> {"intent":"weather_query","date":null,"time":null,"place":"her"}
+29 200   380.5 ms  'what alarms are on right now' -> {"intent":"alarm_query","date":null,"time":null,"place":null}
+30 200   404.1 ms  'set alarm at ten am' -> {"intent":"alarm_set","date":null,"time":"ten am","place":null}
+31 200   404.0 ms  'fun things to do today' -> {"intent":"recommendation_events","date":"today","time":null,"place":null}
+32 200   412.1 ms  'how many days are left in this year' -> {"intent":"datetime_query","date":"the following year","time":null,"place":null}
+33 200   423.4 ms  'set an eight hundred am alarm for next tuesday' -> {"intent":"alarm_set","date":"next tuesday","time":null,"place":null}
+34 200   394.0 ms  'do i have any new tinder matches' -> {"intent":"recommendation_events","date":null,"time":null,"place":null}
+35 200   394.4 ms  'remind me about my alarms today' -> {"intent":"alarm_set","date":"today","time":null,"place":null}
+36 200   412.9 ms  'is my alarm set for seven am' -> {"intent":"alarm_query","date":null,"time":"seven am","place":null}
+37 200   412.9 ms  'remind me about the office meeting tomorrow at seven' -> {"intent":"calendar_set","date":"tomorrow","time":"seven","place":null}
+38 200   451.7 ms  'can you set the event for monday at six at mcdonalds' -> {"intent":"calendar_set","date":"monday","time":"six","place":"maine"}
+39 200   429.6 ms  'i am no longer going to wyatts birthday party' -> {"intent":"recommendation_events","date":null,"time":null,"place":"wrig"}
+40 200   421.4 ms  "set an alarm in an hour's time" -> {"intent":"alarm_set","date":"all hour","time":"time","place":null}
+41 200   398.8 ms  'olly what time is it in california' -> {"intent":"datetime_query","date":null,"time":null,"place":"california"}
+42 200   389.4 ms  'what time is it in beijing' -> {"intent":"datetime_query","date":null,"time":null,"place":"beijing"}
+43 200   375.9 ms  'list my different alarm' -> {"intent":"alarm_query","date":null,"time":null,"place":null}
+44 200   425.2 ms  'what day is the fifteenth' -> {"intent":"datetime_query","date":"fifteenth","time":null,"place":null}
+45 200   450.8 ms  'set an alarm for next tuesdays meeting' -> {"intent":"alarm_set","date":"next tuesday","time":null,"place":null}
+46 200   421.3 ms  'who will be attending the meeting this friday' -> {"intent":"calendar_query","date":"friday","time":null,"place":null}
+47 200   391.7 ms  'what are the show timings' -> {"intent":"datetime_query","date":null,"time":null,"place":null}
+48 200   428.4 ms  'remove my event at one pm in my calendar' -> {"intent":"calendar_remove","date":null,"time":"one pm","place":null}
+49 200   496.1 ms  'what is the address for the event scheduled on the first of january alexa' -> {"intent":"calendar_query","date":"first of january","time":null,"place":"alexa"}
+50 200   447.2 ms  'add on my calendar for today joe smith at one pm' -> {"intent":"calendar_set","date":"today","time":"one pm","place":null}
+
+50 sequential requests: status counts {200: 50}; latency median 404.0 ms, p95 461.2 ms, max 536.9 ms
