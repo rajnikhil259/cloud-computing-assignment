@@ -1,0 +1,25 @@
+# Local Kubernetes cluster for the command-parser project.
+# Create with:  k3d cluster create --config cluster/k3d.yaml   (or: make cluster)
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: cmdparser
+servers: 1          # single-node k3s: everything runs on one machine (see report, Task 4 limitations)
+agents: 0
+image: rancher/k3s:v1.31.4-k3s1
+ports:
+  # Traefik ingress (k3s built-in) -> http://localhost:8080/parse
+  - port: 8080:80
+    nodeFilters:
+      - loadbalancer
+  # SeaweedFS S3 gateway (LoadBalancer Service in namespace "data") -> http://localhost:8333
+  - port: 8333:8333
+    nodeFilters:
+      - loadbalancer
+options:
+  k3d:
+    wait: true
+    timeout: "300s"
+  kubeconfig:
+    updateDefaultKubeconfig: true
+    switchCurrentContext: true

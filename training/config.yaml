@@ -1,0 +1,44 @@
+# Training configuration for sequence-level distillation into Pythia-70M (Task 2).
+# `make train` reads only this file. `make train-v2` applies the "variants.v2" overrides below.
+
+# --- the six required items -------------------------------------------------------------
+seed: 42
+learning_rate: 0.0003
+batch_size: 16
+epochs: 8
+max_seq_length: 96          # tokens (prompt + JSON target + eos); longer examples are truncated
+library_versions:           # checked against the installed versions at start-up
+  python: "3.12"
+  torch: "2.5.1+cpu"
+  transformers: "4.46.3"
+  tokenizers: "0.20.3"
+  safetensors: "0.4.5"
+  numpy: "2.1.3"
+  pyyaml: "6.0.2"
+
+# --- data -----------------------------------------------------------------------------------
+train_file: datasets/v1/train.jsonl
+train_sha256_file: datasets/v1/train.sha256
+max_train_records: 1500     # handout limit: the first 1,500 records of the cleaned dataset
+target_field: teacher_json  # the teacher's reply (one line, schema key order)
+
+# --- model ----------------------------------------------------------------------------------
+base_model: EleutherAI/pythia-70m
+base_model_revision: a39f36b100fe8a5377810d56c3f4789b9c53ac42   # Hugging Face commit, pinned
+prompt_template: "Command: {text}\nJSON:"     # identical to service/model.py
+
+# --- optimiser ------------------------------------------------------------------------------
+weight_decay: 0.01
+warmup_ratio: 0.05
+max_grad_norm: 1.0
+num_threads: 4              # CPU threads for PyTorch
+
+# --- outputs --------------------------------------------------------------------------------
+output_dir: artifacts/models          # <output_dir>/<version>/ (never committed to Git)
+loss_csv: training/loss.csv           # v1; other versions write training/loss_<version>.csv
+default_version: v1
+
+variants:
+  v1: {}
+  v2:
+    epochs: 9                          # the second version: one more epoch, same seed and data

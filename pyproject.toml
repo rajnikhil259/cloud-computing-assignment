@@ -1,0 +1,15 @@
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+extend-exclude = ["tools"]   # the kit's scripts are used unchanged
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B"]
+ignore = ["E731"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app", "model", "clean", "worker", "s3util", "nacl_sim"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

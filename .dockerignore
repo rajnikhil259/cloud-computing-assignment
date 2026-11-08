@@ -1,0 +1,15 @@
+.git
+.github
+.venv
+venv
+artifacts
+results
+report
+**/__pycache__
+**/*.pyc
+*.zip
+*.tar.gz
+**/*.safetensors
+**/*.bin
+**/*.pt
+.secrets

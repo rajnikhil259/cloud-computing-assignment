@@ -1,0 +1,48 @@
+# Creates the buckets "datasets" and "models", uploads the datasets that live in the
+# repository (commands_pool.jsonl, teacher shards, cleaned train set) and copies the
+# trained models from the GitHub Release into models/v1/ and models/v2/.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: storage-seed
+  namespace: data
+spec:
+  backoffLimit: 4
+  ttlSecondsAfterFinished: 3600
+  template:
+    metadata:
+      labels:
+        app: storage-seed
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: seed
+          image: cmdparser-tools:1.0
+          imagePullPolicy: IfNotPresent
+          command: ["python", "-u", "seed_storage.py"]
+          env:
+            - name: S3_ENDPOINT
+              value: http://seaweedfs.data.svc.cluster.local:8333
+            - name: SEED_MODELS
+              value: "__SEED_MODELS__"
+            - name: MODEL_RELEASE_REPO
+              value: "__MODEL_RELEASE_REPO__"
+            - name: MODEL_VERSIONS
+              value: "v1 v2"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: AWS_SECRET_ACCESS_KEY
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: "1"
+              memory: 512Mi

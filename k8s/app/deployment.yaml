@@ -1,0 +1,89 @@
+# The inference service in namespace "app" (Task 4).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cmdparser
+  namespace: app
+  labels:
+    app: cmdparser
+spec:
+  replicas: 2
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1          # start one new Pod first ...
+      maxUnavailable: 0    # ... and remove an old one only when the new one is Ready
+  selector:
+    matchLabels:
+      app: cmdparser
+  template:
+    metadata:
+      labels:
+        app: cmdparser
+    spec:
+      terminationGracePeriodSeconds: 40
+      containers:
+        - name: cmdparser
+          image: cmdparser-service:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8000
+          env:
+            - name: MODEL_URI
+              value: s3://models/v1/
+            - name: MODEL_VERSION
+              value: v1
+            - name: S3_ENDPOINT
+              value: http://seaweedfs.data.svc.cluster.local:8333
+            - name: MAX_NEW_TOKENS
+              value: "64"
+            - name: FAULT_INJECT
+              value: "0"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: AWS_SECRET_ACCESS_KEY
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+          readinessProbe:          # no traffic until the model is downloaded and loaded
+            httpGet:
+              path: /readyz
+              port: http
+            periodSeconds: 2
+            timeoutSeconds: 2
+            failureThreshold: 2
+          livenessProbe:           # restart only if the process stops answering
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          lifecycle:
+            preStop:               # keep serving while Traefik drops this endpoint
+              exec:
+                command: ["python", "-c", "import time; time.sleep(8)"]
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: tmp
+          emptyDir:
+            sizeLimit: 1Gi

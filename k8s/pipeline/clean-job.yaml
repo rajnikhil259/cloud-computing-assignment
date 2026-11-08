@@ -1,0 +1,42 @@
+# Reads every datasets/teacher/shard-*.jsonl object, removes bad records and writes
+# datasets/v1/train.jsonl, datasets/v1/train.sha256 and datasets/v1/clean_report.json.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: clean-dataset
+  namespace: pipeline
+  labels:
+    app: clean-dataset
+spec:
+  backoffLimit: 2
+  template:
+    metadata:
+      labels:
+        app: clean-dataset
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: clean
+          image: cmdparser-tools:1.0
+          imagePullPolicy: IfNotPresent
+          command: ["python", "-u", "clean.py", "--s3"]
+          env:
+            - name: S3_ENDPOINT
+              value: http://seaweedfs.data.svc.cluster.local:8333
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: AWS_SECRET_ACCESS_KEY
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi

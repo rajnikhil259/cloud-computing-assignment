@@ -1,0 +1,72 @@
+# One teacher-labelling worker. scripts/run_teacher.sh renders one copy per shard
+# (__SHARD_INDEX__ / __SHARD_COUNT__ / __INPUT_KEY__ / __OUTPUT_PREFIX__ / __RUN__ are replaced),
+# so several workers with different SHARD_INDEX values run at the same time.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: teacher-worker-__RUN__-__SHARD_INDEX__
+  namespace: pipeline
+  labels:
+    app: teacher-worker
+    run: "__RUN__"
+spec:
+  backoffLimit: 6            # a restarted worker resumes from its last checkpoint in S3
+  template:
+    metadata:
+      labels:
+        app: teacher-worker
+        run: "__RUN__"
+        shard: "__SHARD_INDEX__"
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: worker
+          image: cmdparser-tools:1.0
+          imagePullPolicy: IfNotPresent
+          command: ["python", "-u", "worker.py"]
+          env:
+            - name: SHARD_INDEX
+              value: "__SHARD_INDEX__"
+            - name: SHARD_COUNT
+              value: "__SHARD_COUNT__"
+            - name: INPUT_KEY
+              value: "__INPUT_KEY__"
+            - name: OUTPUT_PREFIX
+              value: "__OUTPUT_PREFIX__"
+            - name: S3_ENDPOINT
+              value: http://seaweedfs.data.svc.cluster.local:8333
+            - name: OLLAMA_URL
+              value: http://ollama.pipeline.svc.cluster.local:11434
+            - name: TEACHER_MODEL
+              value: phi3.5
+            - name: PROMPT_FILE
+              value: /config/teacher_prompt.txt
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: AWS_SECRET_ACCESS_KEY
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+          volumeMounts:
+            - name: prompt
+              mountPath: /config
+              readOnly: true
+      volumes:
+        - name: prompt
+          configMap:
+            name: teacher-prompt

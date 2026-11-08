@@ -1,0 +1,80 @@
+# The teacher model (phi3.5 = Phi-3.5-mini-instruct, 3.8B, Q4_0) served by Ollama inside the
+# cluster, in namespace "pipeline". The init container downloads the model once into the
+# pod's volume; the main container only serves it.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ollama
+  namespace: pipeline
+  labels:
+    app: ollama
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ollama
+  template:
+    metadata:
+      labels:
+        app: ollama
+    spec:
+      initContainers:
+        - name: pull-teacher
+          image: ollama/ollama:0.9.6
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              set -e
+              ollama serve & pid=$!
+              for i in $(seq 1 60); do ollama list >/dev/null 2>&1 && break; sleep 1; done
+              ollama pull phi3.5
+              ollama list
+              kill $pid
+          volumeMounts:
+            - name: models
+              mountPath: /root/.ollama
+      containers:
+        - name: ollama
+          image: ollama/ollama:0.9.6
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: OLLAMA_NUM_PARALLEL     # one decoding slot per concurrent worker
+              value: "__OLLAMA_NUM_PARALLEL__"
+            - name: OLLAMA_KEEP_ALIVE
+              value: "-1"
+            - name: OLLAMA_HOST
+              value: "0.0.0.0:11434"
+          ports:
+            - name: http
+              containerPort: 11434
+          readinessProbe:
+            httpGet:
+              path: /api/tags
+              port: http
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: "1"
+              memory: 4Gi
+            limits:
+              memory: 8Gi
+          volumeMounts:
+            - name: models
+              mountPath: /root/.ollama
+      volumes:
+        - name: models
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ollama
+  namespace: pipeline
+spec:
+  selector:
+    app: ollama
+  ports:
+    - name: http
+      port: 11434
+      targetPort: http

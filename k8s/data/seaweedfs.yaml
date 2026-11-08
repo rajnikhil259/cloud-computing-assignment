@@ -1,0 +1,119 @@
+# SeaweedFS (master + volume + filer + S3 gateway in one process) in namespace "data".
+# The S3 identities file comes from the Secret "seaweedfs-s3-config", which `make up`
+# generates with random credentials (it is never committed to Git).
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: seaweedfs-data
+  namespace: data
+spec:
+  accessModes: ["ReadWriteOnce"]
+  storageClassName: local-path
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seaweedfs
+  namespace: data
+  labels:
+    app: seaweedfs
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate          # one writer on the volume at a time
+  selector:
+    matchLabels:
+      app: seaweedfs
+  template:
+    metadata:
+      labels:
+        app: seaweedfs
+    spec:
+      containers:
+        - name: seaweedfs
+          image: chrislusf/seaweedfs:3.80
+          imagePullPolicy: IfNotPresent
+          args:
+            - server
+            - -dir=/data
+            - -ip.bind=0.0.0.0
+            - -master.volumeSizeLimitMB=1024
+            - -volume.max=0
+            - -filer
+            - -s3
+            - -s3.port=8333
+            - -s3.config=/etc/seaweedfs/s3.json
+          ports:
+            - name: s3
+              containerPort: 8333
+            - name: filer
+              containerPort: 8888
+            - name: master
+              containerPort: 9333
+          readinessProbe:
+            tcpSocket:
+              port: s3
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            tcpSocket:
+              port: master
+            initialDelaySeconds: 20
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            - name: s3-config
+              mountPath: /etc/seaweedfs
+              readOnly: true
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: seaweedfs-data
+        - name: s3-config
+          secret:
+            secretName: seaweedfs-s3-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: seaweedfs
+  namespace: data
+spec:
+  selector:
+    app: seaweedfs
+  ports:
+    - name: s3
+      port: 8333
+      targetPort: s3
+    - name: filer
+      port: 8888
+      targetPort: filer
+    - name: master
+      port: 9333
+      targetPort: master
+---
+# Exposes only the S3 gateway on the host (k3d maps localhost:8333 to this LoadBalancer).
+apiVersion: v1
+kind: Service
+metadata:
+  name: seaweedfs-s3-external
+  namespace: data
+spec:
+  type: LoadBalancer
+  selector:
+    app: seaweedfs
+  ports:
+    - name: s3
+      port: 8333
+      targetPort: s3

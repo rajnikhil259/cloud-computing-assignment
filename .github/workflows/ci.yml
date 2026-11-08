@@ -1,0 +1,134 @@
+# Task 6: CI pipeline. Stages, in this order:
+#   1. lint            ruff + manifest/JSON syntax, and a gitleaks secret scan of the whole history
+#   2. unit-tests      pytest (clean.py rules, sharding, service API with a fake model, subnets/NACL)
+#   3. evaluate        downloads the model from the GitHub Release and runs score.py on validation.jsonl
+#   4. quality-gate    score.py --min-validity 95 (fails the pipeline below 95 % JSON validity)
+# Run it by hand with model_tag=model-base (the untrained Pythia-70M) to see the gate fail.
+name: ci
+
+on:
+  push:
+    branches: ["**"]
+    paths-ignore: ["report/**", "results/**", "**.md"]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      model_tag:
+        description: "GitHub Release holding the model to evaluate (model-v1, model-v2, model-base)"
+        default: model-v1
+
+permissions:
+  contents: read
+
+env:
+  MODEL_TAG: ${{ inputs.model_tag || 'model-v1' }}
+
+jobs:
+  lint:
+    name: "1 · lint + secret scan"
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0            # gitleaks scans every commit, not only the last one
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q -r tests/requirements.txt
+      - name: ruff
+        run: ruff check .
+      - name: JSON / YAML syntax
+        run: |
+          python -c "import json; json.load(open('network/nacl.json')); json.load(open('data/schema.json'))"
+          python - <<'EOF'
+          import glob, yaml
+          for f in sorted(glob.glob("k8s/**/*.yaml", recursive=True) + ["cluster/k3d.yaml", "training/config.yaml"]
+                          + glob.glob(".github/workflows/*.yml")):
+              list(yaml.safe_load_all(open(f)))
+              print("ok", f)
+          EOF
+          for f in scripts/*.sh; do bash -n "$f"; done
+      - name: Secret scan (gitleaks)
+        run: |
+          curl -fsSL https://github.com/gitleaks/gitleaks/releases/download/v8.21.2/gitleaks_8.21.2_linux_x64.tar.gz \
+            | tar -xz -C /usr/local/bin gitleaks
+          gitleaks version
+          gitleaks detect --source . --redact --verbose --report-format json --report-path gitleaks-report.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gitleaks-report
+          path: gitleaks-report.json
+
+  unit-tests:
+    name: "2 · unit tests"
+    needs: lint
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q -r tests/requirements.txt
+      - run: python -m pytest -v --junitxml=pytest-report.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pytest-report
+          path: pytest-report.xml
+
+  evaluate:
+    name: "3 · model evaluation (GitHub Release asset)"
+    needs: unit-tests
+    runs-on: ubuntu-24.04
+    outputs:
+      evaluated: ${{ steps.dl.outputs.evaluated }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download ${{ env.MODEL_TAG }} from the GitHub Release and verify its checksums
+        id: dl
+        run: |
+          if ! gh release view "$MODEL_TAG" > /dev/null 2>&1; then
+            if [ "${{ github.event_name }}" = workflow_dispatch ]; then echo "release $MODEL_TAG not found"; exit 1; fi
+            echo "::notice::release $MODEL_TAG does not exist yet (before the first training run); evaluation skipped"
+            echo "evaluated=false" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          gh release download "$MODEL_TAG" --dir model --pattern '*' --skip-existing
+          ls -la model
+          (cd model && sha256sum -c model.sha256)
+          echo "evaluated=true" >> "$GITHUB_OUTPUT"
+      - name: Install CPU PyTorch + Transformers (pinned)
+        if: steps.dl.outputs.evaluated == 'true'
+        run: pip install -q -r training/requirements.txt
+      - name: Predict on validation.jsonl and score
+        if: steps.dl.outputs.evaluated == 'true'
+        run: |
+          mkdir -p eval
+          python training/predict.py --model model --input data/validation.jsonl --output eval/predictions.jsonl
+          python tools/score.py eval/predictions.jsonl data/validation.jsonl --out eval/score.json
+          head -5 eval/predictions.jsonl
+          cp model/version.json eval/ 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: steps.dl.outputs.evaluated == 'true'
+        with:
+          name: evaluation-${{ env.MODEL_TAG }}
+          path: eval/
+
+  quality-gate:
+    name: "4 · quality gate (JSON validity >= 95 %)"
+    needs: evaluate
+    if: needs.evaluate.outputs.evaluated == 'true'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: evaluation-${{ env.MODEL_TAG }}
+          path: eval
+      - name: score.py --min-validity 95
+        run: python3 tools/score.py eval/predictions.jsonl data/validation.jsonl --min-validity 95

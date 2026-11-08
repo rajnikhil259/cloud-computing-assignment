@@ -1,0 +1,26 @@
+ X01  inbound  tcp port 80    203.0.113.7     -> ALLOW (rule 110)  OK
+ X02  inbound  tcp port 443   10.20.5.140     -> ALLOW (rule 120)  OK
+ X03  inbound  tcp port 80    198.51.100.1    -> DENY  (rule 100)  OK
+ X04  inbound  tcp port 22    198.51.100.200  -> DENY  (rule 100)  OK
+ X05  inbound  udp port 53    198.51.100.5    -> DENY  (rule 100)  OK
+ X06  inbound  tcp port 22    10.20.5.129     -> ALLOW (rule 130)  OK
+ X07  inbound  tcp port 22    10.20.5.158     -> ALLOW (rule 130)  OK
+ X08  inbound  tcp port 22    10.20.5.160     -> DENY  (rule 32766)  OK
+ X09  inbound  tcp port 22    10.20.1.10      -> DENY  (rule 32766)  OK
+ X10  inbound  tcp port 40000 10.20.2.15      -> ALLOW (rule 140)  OK
+ X11  inbound  tcp port 1024  10.20.3.254     -> ALLOW (rule 140)  OK
+ X12  inbound  tcp port 1023  10.20.0.5       -> DENY  (rule 32766)  OK
+ X13  inbound  tcp port 40000 203.0.113.7     -> DENY  (rule 32766)  OK
+ X14  inbound  tcp port 40000 10.20.5.20      -> DENY  (rule 32766)  OK
+ X15  inbound  udp port 443   203.0.113.7     -> DENY  (rule 32766)  OK
+ X16  inbound  tcp port 8080  203.0.113.7     -> DENY  (rule 32766)  OK
+ X17  outbound tcp port 8000  10.20.3.200     -> ALLOW (rule 100)  OK
+ X18  outbound tcp port 80    10.20.1.1       -> DENY  (rule 32766)  OK
+ X19  outbound tcp port 1024  198.18.0.1      -> ALLOW (rule 110)  OK
+ X20  outbound tcp port 65535 203.0.113.7     -> ALLOW (rule 110)  OK
+ X21  outbound tcp port 443   203.0.113.7     -> DENY  (rule 32766)  OK
+ X22  outbound udp port 50000 203.0.113.7     -> DENY  (rule 32766)  OK
+ X23  outbound tcp port 22    10.20.5.130     -> DENY  (rule 32766)  OK
+ X24  outbound tcp port 5432  10.20.5.20      -> ALLOW (rule 110)  OK
+
+Correct: 24 / 24 = 100.0%

@@ -1,0 +1,192 @@
+# Task 1: parallel teacher labelling with phi3.5 (Ollama) inside k3d, then cleaning.
+#
+# mode=validation  labels the 100 validation commands (teacher baseline for Task 2)
+# mode=pool        labels commands_pool.jsonl, then runs clean.py and commits the dataset
+#
+# Each runner job creates its own k3d cluster from cluster/k3d.yaml (SeaweedFS in "data",
+# Ollama + worker Jobs in "pipeline") and runs `workers_per_runner` workers at the same time,
+# each with its own SHARD_INDEX (SHARD_COUNT = runners x workers_per_runner). The aggregate
+# job loads every shard object into a fresh SeaweedFS and runs the clean Job there.
+name: teacher-labelling
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "validation (100 commands) or pool (3,000 commands)"
+        type: choice
+        options: [validation, pool]
+        default: validation
+      runners:
+        description: "number of runner machines (each with its own k3d cluster)"
+        default: "1"
+      workers_per_runner:
+        description: "workers running at the same time on each runner"
+        default: "2"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: teacher-${{ inputs.mode }}
+  cancel-in-progress: false
+
+env:
+  REPO_OWNER_ID: ${{ github.repository_owner_id }}
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.p.outputs.matrix }}
+      shard_count: ${{ steps.p.outputs.shard_count }}
+    steps:
+      - id: p
+        run: |
+          python3 - <<'EOF' >> "$GITHUB_OUTPUT"
+          import json
+          r, w = int("${{ inputs.runners }}"), int("${{ inputs.workers_per_runner }}")
+          runs = [{"runner": i, "indices": " ".join(str(i * w + k) for k in range(w))} for i in range(r)]
+          print("matrix=" + json.dumps({"include": runs}))
+          print(f"shard_count={r * w}")
+          EOF
+          cat "$GITHUB_OUTPUT"
+
+  label:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.plan.outputs.matrix) }}
+    env:
+      RUN: ${{ inputs.mode }}-r${{ matrix.runner }}
+      RESULTS_DIR: ${{ github.workspace }}/results/task1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Free disk space (teacher model and images need ~10 GB)
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
+      - name: Install k3d, kubectl and the S3 client
+        run: |
+          scripts/install_tools.sh
+          pip install -q --no-deps -r worker/requirements.txt
+      - name: Cluster from cluster/k3d.yaml + SeaweedFS + buckets
+        run: |
+          mkdir -p "$RESULTS_DIR"
+          make cluster
+          make secrets
+          scripts/build_images.sh tools
+          SEED_MODELS=0 scripts/storage_up.sh 2>&1 | tee "$RESULTS_DIR/storage_seed_${RUN}.log"
+          kubectl get nodes -o wide | tee "$RESULTS_DIR/cluster_${RUN}.txt"
+          kubectl -n data get deploy,pods,svc,pvc -o wide | tee -a "$RESULTS_DIR/cluster_${RUN}.txt"
+      - name: Teacher + workers (shards ${{ matrix.indices }} of ${{ needs.plan.outputs.shard_count }})
+        run: |
+          if [ "${{ inputs.mode }}" = validation ]; then key=eval/validation_texts.jsonl; prefix=teacher-validation/
+          else key=commands_pool.jsonl; prefix=teacher/; fi
+          echo "PREFIX=$prefix" >> "$GITHUB_ENV"
+          scripts/run_teacher.sh "${{ needs.plan.outputs.shard_count }}" "${{ matrix.indices }}" "$key" "$prefix" "$RUN"
+      - name: Copy the shard objects out of SeaweedFS
+        if: always()
+        run: |
+          python scripts/s3_sync.py get-prefix datasets "$PREFIX" out/shards || true
+          python scripts/s3_sync.py ls datasets | tee "$RESULTS_DIR/datasets_bucket_${RUN}.txt" || true
+          kubectl -n pipeline logs deploy/ollama -c ollama --tail=300 > "$RESULTS_DIR/ollama_${RUN}.log" 2>&1 || true
+          ls -la out/shards || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: teacher-${{ inputs.mode }}-runner-${{ matrix.runner }}
+          path: |
+            out/shards/
+            results/task1/
+          retention-days: 30
+      - name: Delete the cluster
+        if: always()
+        run: make down || true
+
+  aggregate:
+    needs: [plan, label]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: teacher-${{ inputs.mode }}-runner-*
+          path: artifacts
+      - name: Collect shards and logs
+        run: |
+          mkdir -p results/task1 collected
+          for d in artifacts/*/; do
+            cp -v "$d"out/shards/shard-*.jsonl collected/ 2>/dev/null || true
+            cp -r "$d"results/task1/. results/task1/ 2>/dev/null || true
+          done
+          ls -la collected results/task1
+
+      - name: "validation: score the teacher"
+        if: inputs.mode == 'validation'
+        run: |
+          python3 - <<'EOF'
+          import glob, json
+          rows = []
+          for p in sorted(glob.glob("collected/shard-*.jsonl")):
+              rows += [json.loads(l) for l in open(p, encoding="utf-8") if l.strip()]
+          rows.sort(key=lambda r: r["id"])
+          with open("results/teacher_validation_raw.jsonl", "w", encoding="utf-8") as f:
+              for r in rows: f.write(json.dumps(r, ensure_ascii=False) + "\n")
+          with open("results/teacher_validation_predictions.jsonl", "w", encoding="utf-8") as f:
+              for r in rows: f.write(json.dumps({"id": r["id"], "prediction": r["teacher_raw"]}, ensure_ascii=False) + "\n")
+          print(len(rows), "teacher predictions")
+          EOF
+          python tools/score.py results/teacher_validation_predictions.jsonl data/validation.jsonl \
+            --out results/teacher_validation.json | tee results/task1/teacher_validation_score.txt
+          mkdir -p results/task1/validation-shards && cp collected/shard-*.jsonl results/task1/validation-shards/
+
+      - name: "pool: load shards into SeaweedFS and run the clean Job"
+        if: inputs.mode == 'pool'
+        run: |
+          scripts/install_tools.sh
+          pip install -q --no-deps -r worker/requirements.txt
+          rm -f datasets/teacher/shard-*.jsonl
+          cp collected/shard-*.jsonl datasets/teacher/
+          make cluster
+          make secrets
+          scripts/build_images.sh tools
+          SEED_MODELS=0 scripts/storage_up.sh 2>&1 | tee results/task1/storage_seed_aggregate.log
+          kubectl -n pipeline delete job clean-dataset --ignore-not-found
+          kubectl apply -f k8s/pipeline/clean-job.yaml
+          kubectl -n pipeline wait --for=condition=complete job/clean-dataset --timeout=600s
+          kubectl -n pipeline logs job/clean-dataset | tee results/task1/clean_job.log
+          python scripts/s3_sync.py get datasets v1/train.jsonl datasets/v1/train.jsonl
+          python scripts/s3_sync.py get datasets v1/train.sha256 datasets/v1/train.sha256
+          python scripts/s3_sync.py get datasets v1/clean_report.json results/task1/clean_report.json
+          python scripts/s3_sync.py get datasets v1/rejected.jsonl results/task1/clean_rejected.jsonl
+          python scripts/s3_sync.py ls datasets | tee results/task1/buckets_after_clean.txt
+          python scripts/s3_sync.py ls models | tee -a results/task1/buckets_after_clean.txt
+          kubectl get ns,pods -A -o wide > results/task1/cluster_aggregate.txt
+          make down
+
+      - name: "pool: re-run clean.py locally and compare the checksum"
+        if: inputs.mode == 'pool'
+        run: |
+          python worker/clean.py --input-dir datasets/teacher --output-dir /tmp/v1check \
+            --report /tmp/v1check/clean_report.json > /dev/null
+          {
+            echo "train.sha256 from the clean Job in the cluster:"; cat datasets/v1/train.sha256
+            echo "train.sha256 from re-running worker/clean.py locally:"; cat /tmp/v1check/train.sha256
+            (cd datasets/v1 && sha256sum -c train.sha256)
+          } | tee results/task1/clean_checksum_check.txt
+          cmp datasets/v1/train.sha256 /tmp/v1check/train.sha256
+
+      - name: Commit the results
+        run: |
+          scripts/ci_commit.sh "Teacher labelling (${{ inputs.mode }}): ${{ needs.plan.outputs.shard_count }} shards, results" \
+            results datasets
