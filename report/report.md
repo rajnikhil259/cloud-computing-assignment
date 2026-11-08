@@ -1,7 +1,7 @@
 ---
 title: "Knowledge Distillation and Deployment of a Lightweight Command-Parsing Language Model on a Local Cloud"
 subtitle: "CS3081 Cloud Computing — Mini Project Report"
-author: "Name: NAME_PLACEHOLDER · Roll number: ROLL_PLACEHOLDER · Repository: <https://github.com/rajnikhil259/cloud-computing-assignment> (tag `final`)"
+author: "Name: Nikhil Raj · Roll number: 230101095 · Repository: <https://github.com/rajnikhil259/cloud-computing-assignment> (tag `final`)"
 ---
 
 **Conventions.** **Measured** values come from files in `results/` produced by the GitHub Actions runs listed in the

@@ -4,7 +4,7 @@
 **Model releases:** [model-v1](https://github.com/rajnikhil259/cloud-computing-assignment/releases/tag/model-v1) ·
 [model-v2](https://github.com/rajnikhil259/cloud-computing-assignment/releases/tag/model-v2) ·
 [model-base](https://github.com/rajnikhil259/cloud-computing-assignment/releases/tag/model-base) (untrained, for the CI gate demo)
-**Report:** [`report/report.pdf`](report/report.pdf) · **Assessed commit:** tag [`final`](https://github.com/rajnikhil259/cloud-computing-assignment/tree/final)
+**Student:** Nikhil Raj (230101095) · **Report:** [`report/report.pdf`](report/report.pdf) · **Assessed commit:** tag [`final`](https://github.com/rajnikhil259/cloud-computing-assignment/tree/final)
 
 A teacher model (`phi3.5`, Phi-3.5-mini-instruct 3.8B, served by Ollama with temperature 0 and seed 42) labels
 3,000 voice-assistant commands with a four-key JSON frame (`intent`, `date`, `time`, `place`). The cleaned

@@ -1,10 +1,10 @@
 # Reflection notes — draft text to copy by hand
 
 > This is a **draft for the handwritten reflection**. The submission must be in your own handwriting, scanned as
-> `<roll_number>.pdf` (at most 3 pages), and committed at the repository root before running the
+> `230101095.pdf` (at most 3 pages), and committed at the repository root before running the
 > `package-submission` workflow. Rewrite it in your own words and keep only what you actually experienced.
 
-**Name:** ______________________  **Roll number:** ______________
+**Name:** Nikhil Raj  **Roll number:** 230101095
 **GitHub:** https://github.com/rajnikhil259/cloud-computing-assignment (tag `final`)
 
 ## 1. What I learnt
