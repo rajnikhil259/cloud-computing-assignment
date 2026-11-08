@@ -150,5 +150,9 @@ This deletes the k3d cluster, which removes SeaweedFS, the data and every deploy
 | `report.yml` | builds `report/report.pdf` |
 | `package.yml` | builds `<roll_number>.zip` (report, handwritten reflection, source, README) and tags `final` |
 
+Each workflow is started from the Actions tab ("Run workflow"), in this order: `teacher.yml` (mode `validation`,
+then mode `pool`) → `train.yml` → `service.yml` → `deploy.yml` → `ci.yml` (with `model-v1`, and once with
+`model-base`) → `report.yml` → `package.yml`.
+
 All commits, including the ones the workflows push with results, are authored by the repository owner.
 No credentials are stored in the repository: S3 keys are generated at deploy time and live only in Kubernetes Secrets.
