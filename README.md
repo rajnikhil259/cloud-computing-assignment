@@ -44,7 +44,8 @@ k3d (k3s) cluster behind the Traefik Ingress, with probes, an HPA, rolling updat
 | `tools/`, `data/` | the student kit, unchanged (`score.py`, `locustfile.py`, `nacl_sim.py`, datasets) |
 | `results/` | every log, score report, Locust output and command output used in the report |
 | `.github/workflows/` | CI and the workflows that produced the results (see below) |
-| `report/` | `report.md` → `report.pdf`, and the draft text for the handwritten reflection |
+| `report/` | `report.md` → `report.pdf` (built by `report.yml`) |
+| `230101095.pdf` | scanned handwritten reflection notes |
 | `AI_USE.md` | which AI tools were used, for what, and how their output was checked |
 
 ## Prerequisites

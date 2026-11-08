@@ -4,7 +4,7 @@
 
 | Tool | Used for |
 |---|---|
-| Claude Code (Anthropic), an AI coding assistant working in a cloud sandbox | Reading the handout and the kit; drafting the Python code (`worker/`, `service/`, `training/`, `scripts/`), Kubernetes manifests, Dockerfiles, the Makefile, GitHub Actions workflows and unit tests; working out the subnet table; drafting `README.md` and the report text from the measured results in `results/` |
+| Claude Code (Anthropic), an AI coding assistant working in a cloud sandbox | Reading the handout and the kit; drafting the Python code (`worker/`, `service/`, `training/`, `scripts/`), Kubernetes manifests, Dockerfiles, the Makefile, GitHub Actions workflows and unit tests; working out the subnet table; drafting `README.md` and the report text from the measured results in `results/`; drafting an outline of the reflection notes, which I then wrote out by hand (`230101095.pdf`) |
 
 No AI tool was used to label data. Every training target comes from the fixed teacher (`phi3.5` on Ollama,
 temperature 0, seed 42), and the replies are stored exactly as generated. No AI tool produced any number in the
