@@ -1,0 +1,300 @@
+load: token to piece cache size = 0.1685 MB
+print_info: arch             = phi3
+print_info: vocab_only       = 0
+print_info: n_ctx_train      = 131072
+print_info: n_embd           = 3072
+print_info: n_layer          = 32
+print_info: n_head           = 32
+print_info: n_head_kv        = 32
+print_info: n_rot            = 96
+print_info: n_swa            = 262144
+print_info: n_swa_pattern    = 1
+print_info: n_embd_head_k    = 96
+print_info: n_embd_head_v    = 96
+print_info: n_gqa            = 1
+print_info: n_embd_k_gqa     = 3072
+print_info: n_embd_v_gqa     = 3072
+print_info: f_norm_eps       = 0.0e+00
+print_info: f_norm_rms_eps   = 1.0e-05
+print_info: f_clamp_kqv      = 0.0e+00
+print_info: f_max_alibi_bias = 0.0e+00
+print_info: f_logit_scale    = 0.0e+00
+print_info: f_attn_scale     = 0.0e+00
+print_info: n_ff             = 8192
+print_info: n_expert         = 0
+print_info: n_expert_used    = 0
+print_info: causal attn      = 1
+print_info: pooling type     = 0
+print_info: rope type        = 2
+print_info: rope scaling     = linear
+print_info: freq_base_train  = 10000.0
+print_info: freq_scale_train = 1
+print_info: n_ctx_orig_yarn  = 4096
+print_info: rope_finetuned   = unknown
+print_info: ssm_d_conv       = 0
+print_info: ssm_d_inner      = 0
+print_info: ssm_d_state      = 0
+print_info: ssm_dt_rank      = 0
+print_info: ssm_dt_b_c_rms   = 0
+print_info: model type       = 3B
+print_info: model params     = 3.82 B
+print_info: general.name     = Phi 3.5 Mini Instruct
+print_info: vocab type       = SPM
+print_info: n_vocab          = 32064
+print_info: n_merges         = 0
+print_info: BOS token        = 1 '<s>'
+print_info: EOS token        = 32000 '<|endoftext|>'
+print_info: EOT token        = 32007 '<|end|>'
+print_info: UNK token        = 0 '<unk>'
+print_info: PAD token        = 32000 '<|endoftext|>'
+print_info: LF token         = 13 '<0x0A>'
+print_info: EOG token        = 32000 '<|endoftext|>'
+print_info: EOG token        = 32007 '<|end|>'
+print_info: max token length = 48
+load_tensors: loading model tensors, this can take a while... (mmap = false)
+load_tensors:          CPU model buffer size =  2074.66 MiB
+time=2026-11-08T09:28:39.460Z level=INFO source=server.go:632 msg="waiting for server to become available" status="llm server loading model"
+llama_context: constructing llama_context
+llama_context: n_seq_max     = 2
+llama_context: n_ctx         = 4096
+llama_context: n_ctx_per_seq = 2048
+llama_context: n_batch       = 1024
+llama_context: n_ubatch      = 512
+llama_context: causal_attn   = 1
+llama_context: flash_attn    = 0
+llama_context: freq_base     = 10000.0
+llama_context: freq_scale    = 1
+llama_context: n_ctx_per_seq (2048) < n_ctx_train (131072) -- the full capacity of the model will not be utilized
+llama_context:        CPU  output buffer size =     0.27 MiB
+llama_kv_cache_unified: kv_size = 4096, type_k = 'f16', type_v = 'f16', n_layer = 32, can_shift = 1, padding = 32
+llama_kv_cache_unified:        CPU KV buffer size =  1536.00 MiB
+llama_kv_cache_unified: KV self size  = 1536.00 MiB, K (f16):  768.00 MiB, V (f16):  768.00 MiB
+llama_context:        CPU compute buffer size =   300.01 MiB
+llama_context: graph nodes  = 1350
+llama_context: graph splits = 1
+time=2026-11-08T09:28:40.713Z level=INFO source=server.go:637 msg="llama runner started in 1.50 seconds"
+[GIN] 2026/11/08 - 09:28:41 | 200 |     311.981µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:28:46 | 200 |     297.209µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:28:51 | 200 |     405.833µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:28:56 | 200 |     324.029µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:29:01 | 200 |     343.198µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:29:06 | 200 |     337.319µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:29:11 | 200 |     361.045µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:29:16 | 200 |     311.981µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:29:21 | 200 |     325.582µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:29:26 | 200 |     342.997µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:29:31 | 200 |     335.897µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:29:36 | 200 |     454.166µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:29:41 | 200 |     349.999µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:29:46 | 200 |     348.956µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:29:51 | 200 |     366.243µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:29:56 | 200 |     315.436µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:29:57 | 200 |         1m18s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:30:01 | 200 |     369.327µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:30:06 | 200 |  8.448731783s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:30:06 | 200 |     367.585µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:30:11 | 200 |     353.944µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:30:14 | 200 |         1m35s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:30:14 | 200 |  8.116550877s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:30:16 | 200 |     322.697µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:30:21 | 200 |      364.44µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:30:22 | 200 |  8.285801458s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:30:23 | 200 |  9.396202496s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:30:26 | 200 |     369.498µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:30:31 | 200 |     334.886µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:30:31 | 200 |  9.250357986s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:30:32 | 200 |  8.282583723s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:30:36 | 200 |     328.216µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:30:41 | 200 |  9.109229742s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:30:41 | 200 |     329.468µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:30:46 | 200 |     329.858µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:30:48 | 200 |  7.809767751s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:30:51 | 200 |     311.781µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:30:56 | 200 |    1.093856ms |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:30:57 | 200 |  8.281038375s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:31:01 | 200 |     318.611µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:31:04 | 200 |  7.718585608s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:31:06 | 200 |     308.176µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:31:08 | 200 | 36.085895699s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:31:11 | 200 |     301.335µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:31:12 | 200 |  7.333962174s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:31:15 | 200 |  7.382660966s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:31:16 | 200 |      417.23µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:31:19 | 200 |   7.36545796s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:31:21 | 200 |    1.716142ms |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:31:22 | 200 |  6.678862847s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:31:26 | 200 |  7.106489532s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:31:26 | 200 |     313.183µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:31:31 | 200 |  8.656612574s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:31:31 | 200 |     300.223µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:31:34 | 200 |  7.430423791s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:31:36 | 200 |     300.634µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:31:38 | 200 |  7.699772222s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:31:41 | 200 |     310.019µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:31:41 | 200 |   7.70407671s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:31:45 | 200 |  6.848625153s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:31:46 | 200 |     326.974µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:31:49 | 200 |  7.543319908s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:31:51 | 200 |     353.474µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:31:56 | 200 |  6.718203046s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:31:56 | 200 |      318.04µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:32:01 | 200 |     347.524µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:32:02 | 200 |  6.683094052s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:32:03 | 200 | 18.324329402s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:32:06 | 200 |     354.906µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:32:10 | 200 |  8.034331003s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:32:11 | 200 |     394.346µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:32:12 | 200 |  9.005255312s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:32:16 | 200 |      357.42µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:32:19 | 200 |  9.106139929s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:32:19 | 200 |  6.986673367s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:32:21 | 200 |     321.506µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:32:26 | 200 |     365.112µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:32:27 | 200 |  7.517420355s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:32:27 | 200 |  7.670632282s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:32:31 | 200 |     428.537µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:32:35 | 200 |   8.01593524s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:32:35 | 200 |  7.862849583s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:32:36 | 200 |      364.21µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:32:41 | 200 |      331.28µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:32:45 | 200 | 10.004747667s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:32:46 | 200 |     381.577µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:32:51 | 200 |     380.826µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:32:53 | 200 |  7.779530804s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:32:56 | 200 |     309.557µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:33:00 | 200 |  6.906840918s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:33:01 | 200 |     358.601µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:33:06 | 200 |     349.287µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:33:08 | 200 |   7.92860949s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:33:08 | 200 | 32.756515698s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:33:11 | 200 |     313.723µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:33:15 | 200 |  7.039871513s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:33:16 | 200 |     317.829µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:33:17 | 200 |  8.996180079s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:33:21 | 200 |     351.731µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:33:26 | 200 |  9.093145367s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:33:26 | 200 |     319.453µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:33:31 | 200 |     327.224µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:33:34 | 200 |  8.347167577s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:33:36 | 200 |     299.672µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:33:41 | 200 |     334.926µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:33:42 | 200 |  7.398568854s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:33:46 | 200 |     389.067µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:33:48 | 200 | 33.235581273s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:33:50 | 200 |  8.061343575s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:33:51 | 200 |     313.924µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:33:55 | 200 |   7.30474963s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:33:56 | 200 |     338.471µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:33:57 | 200 |  7.632172777s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:34:01 | 200 |     333.223µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:34:04 | 200 |  8.602953582s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:34:05 | 200 |  7.719772071s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:34:06 | 200 |     327.274µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:34:11 | 200 |      390.82µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:34:12 | 200 |  7.418053524s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:34:12 | 200 |  8.605778586s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:34:16 | 200 |     309.627µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:34:20 | 200 |  7.636579168s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:34:21 | 200 |     356.238µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:34:21 | 200 |  9.020150865s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:34:26 | 200 |     382.167µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:34:28 | 200 |  7.878566865s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:34:29 | 200 |  8.080313761s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:34:31 | 200 |     306.913µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:34:35 | 200 |  7.030236048s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:34:36 | 200 |     347.205µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:34:37 | 200 |  7.627303023s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:34:41 | 200 |     316.377µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:34:43 | 200 |   8.02523568s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:34:44 | 200 |  6.871898582s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:34:46 | 200 |     342.246µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:34:51 | 200 |  8.117554979s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:34:51 | 200 |     401.016µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:34:52 | 200 |  8.048580327s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:34:56 | 200 |     307.815µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:34:59 | 200 |   7.45425123s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:34:59 | 200 |   6.74689685s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:35:01 | 200 |       456.9µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:35:06 | 200 |     295.416µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:35:07 | 200 |  8.545237447s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:35:09 | 200 | 10.324180899s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:35:11 | 200 |     324.249µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:35:15 | 200 |   7.64812817s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:35:16 | 200 |     302.046µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:35:17 | 200 |  7.587173132s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:35:21 | 200 |     313.614µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:35:22 | 200 |  7.013921602s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:35:25 | 200 |  7.966638756s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:35:26 | 200 |      310.96µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:35:31 | 200 |      397.55µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:35:32 | 200 |  6.970374463s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:35:36 | 200 |     363.459µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:35:39 | 200 |  7.350297582s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:35:41 | 200 |     319.943µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:35:46 | 200 |     627.387µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:35:46 | 200 |  7.504905132s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:35:47 | 200 | 24.890710512s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:35:51 | 200 |     316.197µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:35:54 | 200 |  7.745505977s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:35:56 | 200 |     299.121µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:36:01 | 200 |     365.722µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:36:03 | 200 |  8.455704917s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:36:06 | 200 |     313.163µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:36:10 | 200 |  6.894637728s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:36:11 | 200 |     409.648µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:36:16 | 200 | 29.038432365s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:36:16 | 200 |     348.406µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:36:17 | 200 |  7.275514896s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:36:21 | 200 |      330.93µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:36:24 | 200 |  7.235460967s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:36:26 | 200 |  9.924342465s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:36:26 | 200 |     334.795µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:36:31 | 200 |     347.805µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:36:33 | 200 |  8.406632112s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:36:36 | 200 |     366.944µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:36:40 | 200 |  7.098850229s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:36:41 | 200 |     351.921µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:36:46 | 200 |     320.154µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:36:48 | 200 |  8.397802057s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:36:49 | 200 | 23.653719313s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:36:51 | 200 |     307.104µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:36:56 | 200 |     313.303µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:36:56 | 200 |  8.468683251s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:36:57 | 200 |  7.380836287s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:37:01 | 200 |     347.535µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:37:04 | 200 |   7.37690788s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:37:04 | 200 |  7.511234038s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:37:06 | 200 |     364.691µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:37:11 | 200 |     353.553µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:37:12 | 200 |  8.109890563s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:37:14 | 200 | 10.102642052s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:37:16 | 200 |     320.444µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:37:19 | 200 |  7.081766282s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:37:21 | 200 |      370.37µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:37:22 | 200 |  7.604416613s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:37:26 | 200 |     426.654µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:37:29 | 200 |  7.308170505s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:37:31 | 200 |     321.466µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:37:36 | 200 |     331.791µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:37:41 | 200 |     341.175µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:37:42 | 200 | 22.761212262s |      10.42.0.15 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:37:46 | 200 |     330.099µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:37:51 | 200 |     329.397µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:37:52 | 200 | 23.121216705s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:37:56 | 200 |     326.222µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:37:57 | 200 |  4.941888483s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:38:01 | 200 |     349.457µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:38:01 | 200 |  4.088496625s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:38:06 | 200 |     399.894µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:38:06 | 200 |  4.945765269s |      10.42.0.14 | POST     "/api/generate"
+[GIN] 2026/11/08 - 09:38:11 | 200 |     270.879µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:38:16 | 200 |     229.146µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:38:21 | 200 |     269.657µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:38:26 | 200 |     235.235µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:38:31 | 200 |     233.953µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:38:36 | 200 |     246.272µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:38:41 | 200 |     267.735µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:38:46 | 200 |     251.872µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:38:51 | 200 |     248.375µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:38:56 | 200 |     242.887µs |       10.42.0.1 | GET      "/api/tags"
+[GIN] 2026/11/08 - 09:39:01 | 200 |      264.96µs |       10.42.0.1 | GET      "/api/tags"

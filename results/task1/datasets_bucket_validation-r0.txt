@@ -1,0 +1,4 @@
+s3://datasets/commands_pool.jsonl	197541
+s3://datasets/eval/validation_texts.jsonl	6423
+s3://datasets/teacher-validation/shard-0.jsonl	11199
+s3://datasets/teacher-validation/shard-1.jsonl	10164

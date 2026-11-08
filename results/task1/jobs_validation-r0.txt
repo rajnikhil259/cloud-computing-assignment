@@ -1,0 +1,8 @@
+NAME                                       STATUS     COMPLETIONS   DURATION   AGE   CONTAINERS   IMAGES                SELECTOR
+job.batch/teacher-worker-validation-r0-0   Complete   1/1           9m31s      10m   worker       cmdparser-tools:1.0   batch.kubernetes.io/controller-uid=195d6ff0-6b32-4bd2-92f7-66efdf1253ed
+job.batch/teacher-worker-validation-r0-1   Complete   1/1           9m7s       10m   worker       cmdparser-tools:1.0   batch.kubernetes.io/controller-uid=aeb56f3c-530c-4ac7-a0e0-e2db321d9054
+
+NAME                                       READY   STATUS      RESTARTS   AGE   IP           NODE                     NOMINATED NODE   READINESS GATES
+pod/ollama-846db7d996-hcxrz                1/1     Running     0          11m   10.42.0.13   k3d-cmdparser-server-0   <none>           <none>
+pod/teacher-worker-validation-r0-0-blnml   0/1     Completed   0          10m   10.42.0.14   k3d-cmdparser-server-0   <none>           <none>
+pod/teacher-worker-validation-r0-1-tzpcp   0/1     Completed   0          10m   10.42.0.15   k3d-cmdparser-server-0   <none>           <none>
