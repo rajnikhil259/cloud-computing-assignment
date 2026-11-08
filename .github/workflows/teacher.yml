@@ -98,6 +98,7 @@ jobs:
       - name: Copy the shard objects out of SeaweedFS
         if: always()
         run: |
+          mkdir -p "$RESULTS_DIR"
           python scripts/s3_sync.py get-prefix datasets "$PREFIX" out/shards || true
           python scripts/s3_sync.py ls datasets | tee "$RESULTS_DIR/datasets_bucket_${RUN}.txt" || true
           kubectl -n pipeline logs deploy/ollama -c ollama --tail=300 > "$RESULTS_DIR/ollama_${RUN}.log" 2>&1 || true
