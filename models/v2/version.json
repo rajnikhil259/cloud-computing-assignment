@@ -1,0 +1,28 @@
+{
+  "version": "v2",
+  "base_model": "EleutherAI/pythia-70m",
+  "base_model_revision": "a39f36b100fe8a5377810d56c3f4789b9c53ac42",
+  "method": "sequence-level knowledge distillation from phi3.5 (Ollama, temperature 0, seed 42)",
+  "train_file": "datasets/v1/train.jsonl",
+  "train_sha256": "f536dfca7b66c4b16da37fc04815daeed9f2fee02381e48315f70515f37b64d0",
+  "train_records": 1500,
+  "first_id": "C0001",
+  "last_id": "C1618",
+  "seed": 42,
+  "learning_rate": 0.0003,
+  "batch_size": 16,
+  "epochs": 9,
+  "max_seq_length": 96,
+  "prompt_template": "Command: {text}\nJSON:",
+  "final_train_loss": 0.004984,
+  "training_seconds": 1530.1,
+  "library_versions": {
+    "python": "3.12.16",
+    "torch": "2.5.1+cpu",
+    "transformers": "4.46.3",
+    "tokenizers": "0.20.3",
+    "safetensors": "0.4.5",
+    "numpy": "2.1.3",
+    "pyyaml": "6.0.2"
+  }
+}

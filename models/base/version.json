@@ -1,0 +1,6 @@
+{
+  "version": "base",
+  "base_model": "EleutherAI/pythia-70m",
+  "base_model_revision": "a39f36b100fe8a5377810d56c3f4789b9c53ac42",
+  "note": "untrained Pythia-70M, used as the deliberately bad model for the CI quality gate"
+}

@@ -1,0 +1,22 @@
+python3 training/train.py --config training/config.yaml --subset 50
+version=subset-50 records=50 (first id C0001, last id C0052) epochs=8 lr=0.0003 batch=16 seed=42
+examples=50 truncated=0 mean_tokens=38.3
+epoch 1/8  loss 4.2359  (6s)
+epoch 2/8  loss 3.4857  (6s)
+epoch 3/8  loss 1.3169  (6s)
+epoch 4/8  loss 0.7095  (6s)
+epoch 5/8  loss 0.4493  (6s)
+epoch 6/8  loss 0.2855  (6s)
+epoch 7/8  loss 0.2080  (6s)
+epoch 8/8  loss 0.1532  (6s)
+saved config.json, generation_config.json, loss.csv, model.safetensors, special_tokens_map.json, tokenizer.json, tokenizer_config.json, version.json to artifacts/models/subset-50; loss per epoch in artifacts/models/subset-50/loss.csv
+model.sha256:
+a759486cc8ac7fd796b6a06cf0a8667cf502702407ea9dd5842d6b0b08d5f1f1  config.json
+488c1a4387cb693f41637aab91d5986221abea9648267cbf729d4ea55153c3c4  generation_config.json
+8883e67fed8ebd79f5efcc9a6c7bab26f6899b5f61f37114f742457a89542035  loss.csv
+bfe6c064c153fd5f9617f2d032973814f64049ec77e4f2d6e1b5fbe72dac237c  model.safetensors
+57491904f8680d4b52ed440f1f7ba48cad1c31ecf3eb453b03484e6ff4723ae8  special_tokens_map.json
+d4c0d99d84af59e9126913fafe5210822963e9a3065ee43e6833b358b0c2f825  tokenizer.json
+3e17d197ebe3c73c4d6a43816d9b9012724a43ea612420f4b167aa9d75240492  tokenizer_config.json
+2ecba994b1c30502c48a753d7cbdba0a3d9749796dcf1363d07fac5218444ca8  version.json
+
