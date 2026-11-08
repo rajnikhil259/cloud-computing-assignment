@@ -25,11 +25,15 @@ import time
 import requests
 
 # Fixed teacher settings required by the handout: temperature 0 and seed 42.
+# Decoding stops at the end of the first line: the prompt asks for one JSON object on a single line, and
+# the validation run showed phi3.5 sometimes appending "\n\n(Note: ...)" after a correct JSON line.
+# The phi3.5 template's own stop tokens are kept.
 TEACHER_OPTIONS = {
     "temperature": 0,
     "seed": 42,
     "num_predict": 128,   # a four-key JSON object needs < 60 tokens; this only caps run-away replies
     "num_ctx": 2048,
+    "stop": ["\n", "<|end|>", "<|user|>", "<|assistant|>", "<|system|>"],
 }
 
 

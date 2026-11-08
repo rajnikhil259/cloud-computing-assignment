@@ -35,3 +35,4 @@ def test_prompt_file_has_placeholder_and_schema_terms():
 
 def test_teacher_settings_are_fixed():
     assert worker.TEACHER_OPTIONS["temperature"] == 0 and worker.TEACHER_OPTIONS["seed"] == 42
+    assert "\n" in worker.TEACHER_OPTIONS["stop"]          # one JSON line, no trailing notes
