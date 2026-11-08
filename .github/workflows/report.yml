@@ -4,6 +4,13 @@ name: build-report
 
 on:
   workflow_dispatch:
+    inputs:
+      student_name:
+        description: "name printed on the title block"
+        default: ""
+      roll_number:
+        description: "roll number printed on the title block"
+        default: ""
   push:
     paths: ["report/report.md", "report/style.css", "report/build.sh"]
 
@@ -25,6 +32,9 @@ jobs:
       - name: Install pandoc and poppler
         run: sudo apt-get update -q && sudo apt-get install -y -q pandoc poppler-utils
       - name: Build report/report.pdf
+        env:
+          STUDENT_NAME: ${{ inputs.student_name }}
+          ROLL_NUMBER: ${{ inputs.roll_number }}
         run: CHROME=google-chrome report/build.sh
       - uses: actions/upload-artifact@v4
         with:
