@@ -34,6 +34,10 @@ concurrency:
 env:
   REPO_OWNER_ID: ${{ github.repository_owner_id }}
 
+defaults:
+  run:
+    shell: bash   # -eo pipefail: a failing command before `| tee` fails the step
+
 jobs:
   plan:
     runs-on: ubuntu-24.04

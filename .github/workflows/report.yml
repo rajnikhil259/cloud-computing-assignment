@@ -1,0 +1,33 @@
+# Builds report/report.pdf from report/report.md (pandoc -> HTML -> headless Chrome PDF) and commits it.
+name: build-report
+
+on:
+  workflow_dispatch:
+  push:
+    paths: ["report/report.md", "report/style.css", "report/build.sh"]
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  REPO_OWNER_ID: ${{ github.repository_owner_id }}
+
+jobs:
+  pdf:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pandoc and poppler
+        run: sudo apt-get update -q && sudo apt-get install -y -q pandoc poppler-utils
+      - name: Build report/report.pdf
+        run: CHROME=google-chrome report/build.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: report
+          path: report/report.pdf
+      - name: Commit the PDF
+        run: scripts/ci_commit.sh "Build report/report.pdf" report/report.pdf

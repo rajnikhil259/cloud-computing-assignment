@@ -5,8 +5,8 @@ PY ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 SUBSET ?=
 SHARDS ?= 2
 
-.PHONY: help up down cluster secrets storage images deploy status setup setup-dev train train-v2 \
-        evaluate teacher clean-data test lint loadtest nacl
+.PHONY: help up down cluster secrets storage images image deploy status setup setup-dev train train-v2 \
+        evaluate teacher clean-data test lint loadtest nacl experiments report
 
 help:            ## list the targets
 	@grep -E '^[a-zA-Z0-9_-]+:.*##' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-12s %s\n", $$1, $$2}'
@@ -25,6 +25,8 @@ secrets:         ## generate S3 credentials (.secrets/, git-ignored) and load th
 	scripts/secrets.sh
 images:          ## build cmdparser-tools and cmdparser-service and import them into k3d
 	scripts/build_images.sh all
+image:           ## build only the service image (one command, no cluster needed)
+	docker build -f service/Dockerfile -t cmdparser-service:1.0 .
 storage:         ## SeaweedFS in namespace data + buckets, datasets and models
 	scripts/storage_up.sh
 deploy:          ## deploy the service in namespace app
@@ -62,6 +64,10 @@ test:            ## unit tests
 	$(PY) -m pytest
 nacl:            ## check the NACL with the kit's simulator
 	python3 tools/nacl_sim.py network/nacl.json network/packets_sample.jsonl --check
+experiments:     ## Task 4/7 experiments against the running system (results/task4, results/task7)
+	scripts/k8s_experiments.sh all
+report:          ## build report/report.pdf (needs pandoc and Chrome/Chromium)
+	report/build.sh
 loadtest:        ## the standard load test through the ingress (results/loadtest_*)
 	locust -f tools/locustfile.py --headless --users 4 --spawn-rate 4 --run-time 2m \
 	  --host http://localhost:8080 --csv results/loadtest

@@ -1,0 +1,70 @@
+# Builds the single submission file <roll_number>.zip and tags the submission commit as `final`.
+# The zip contains (at its top level):
+#   <roll_number>.pdf        the scanned handwritten reflection (commit it at the repository root first)
+#   report/report.pdf        the report
+#   README.md                with the GitHub repository link
+#   ...                      every tracked file of the repository (source, tests, manifests, results)
+name: package-submission
+
+on:
+  workflow_dispatch:
+    inputs:
+      roll_number:
+        description: "your roll number (the zip and the reflection PDF are named after it)"
+        required: true
+      tag_final:
+        description: "tag this commit as `final`"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  GH_TOKEN: ${{ github.token }}
+  ROLL: ${{ inputs.roll_number }}
+
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check that every required piece is present
+        run: |
+          [[ "$ROLL" =~ ^[A-Za-z0-9_-]+$ ]] || { echo "roll number must be letters/digits only (no spaces)"; exit 1; }
+          missing=0
+          for f in "$ROLL.pdf" report/report.pdf README.md AI_USE.md Makefile cluster/k3d.yaml service/Dockerfile \
+                   network/subnets.md network/nacl.json prompts/teacher_prompt.txt training/config.yaml training/loss.csv \
+                   datasets/v1/train.jsonl datasets/v1/train.sha256 models/v1/model.sha256 results/teacher_validation.json \
+                   .github/workflows/ci.yml; do
+            if [ -e "$f" ]; then echo "ok       $f"; else echo "MISSING  $f"; missing=1; fi
+          done
+          grep -q "github.com/${{ github.repository }}" README.md && echo "ok       README.md links the repository"
+          for t in model-v1 model-v2; do gh release view "$t" > /dev/null && echo "ok       release $t"; done
+          [ "$missing" = 0 ] || { echo "add the missing files first (the handwritten reflection must be committed as $ROLL.pdf)"; exit 1; }
+      - name: Build <roll_number>.zip from the committed tree
+        run: |
+          git archive --format=zip -o "$ROLL.zip" HEAD
+          unzip -l "$ROLL.zip" | tail -n 3
+          unzip -l "$ROLL.zip" | grep -E " ($ROLL\.pdf|README\.md|report/report\.pdf)$"
+          sha256sum "$ROLL.zip" | tee "$ROLL.zip.sha256"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: submission-${{ inputs.roll_number }}
+          path: |
+            ${{ inputs.roll_number }}.zip
+            ${{ inputs.roll_number }}.zip.sha256
+      - name: Tag the submission commit as `final` and attach the zip to the "submission" release
+        if: inputs.tag_final
+        run: |
+          git tag -f final "$GITHUB_SHA"
+          git push -f origin refs/tags/final
+          gh release view submission > /dev/null 2>&1 && gh release delete submission --yes --cleanup-tag
+          gh release create submission --target "$GITHUB_SHA" --title "Submission ($ROLL)" \
+            --notes "Submission archive built from commit $GITHUB_SHA (tag \`final\`)." "$ROLL.zip" "$ROLL.zip.sha256"

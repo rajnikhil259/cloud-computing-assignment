@@ -53,10 +53,12 @@ class CommandParser:
 
     def generate(self, text, max_new_tokens=64):
         """Greedy decoding; returns the raw generated text (without the prompt)."""
+        from transformers import DynamicCache
+
         torch = self.torch
         ids = self.tokenizer(build_prompt(text), return_tensors="pt").input_ids
         out = []
-        past = None
+        past = DynamicCache()
         with torch.inference_mode():
             inp = ids
             for _ in range(int(max_new_tokens)):

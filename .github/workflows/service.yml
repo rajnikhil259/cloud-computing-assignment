@@ -1,0 +1,27 @@
+# Task 3: build the inference image and test it as a plain container at 1 CPU / 1 GiB.
+name: service-container
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  REPO_OWNER_ID: ${{ github.repository_owner_id }}
+
+jobs:
+  container:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build, size check, start-up probes, 50 sequential requests, FAULT_INJECT
+        run: scripts/task3_container_test.sh
+      - name: Commit results
+        run: |
+          scripts/ci_commit.sh "Task 3: container build, limits test and fault injection results" results/task3

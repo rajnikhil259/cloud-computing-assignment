@@ -1,0 +1,69 @@
+# Tasks 4, 6 and 7 on a fresh runner: `make up` from a clean checkout, then the Kubernetes
+# experiments (ingress, readiness gating, cold starts, load balancing / standard load test,
+# rolling update + rollback under load, pod recovery under load, HPA 1 -> 2 -> 1),
+# cost and SLO, and finally `make down`. All evidence is committed under results/.
+name: deploy-and-evaluate
+
+on:
+  workflow_dispatch:
+    inputs:
+      experiments:
+        description: "which experiments to run (all, or one of basics coldstart loadbalance rolling recovery hpa task7)"
+        default: all
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  REPO_OWNER_ID: ${{ github.repository_owner_id }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install k3d, kubectl and Locust (pinned)
+        run: |
+          scripts/install_tools.sh
+          pip install -q locust==2.32.4
+          mkdir -p results/task4 results/task6 results/task7
+          { docker version --format 'docker {{.Server.Version}}'; k3d version; kubectl version --client; locust --version; nproc; free -g; } \
+            > results/task6/environment.txt 2>&1
+
+      - name: make up (from a fresh checkout)
+        run: |
+          start=$(date +%s)
+          make up 2>&1 | tee results/task6/make_up.log
+          echo "make up finished in $(( $(date +%s) - start )) s" | tee -a results/task6/make_up.log
+
+      - name: Experiments
+        run: scripts/k8s_experiments.sh "${{ inputs.experiments }}"
+
+      - name: Collect cluster state
+        if: always()
+        run: |
+          kubectl get all -A -o wide > results/task4/cluster_state_end.txt 2>&1 || true
+          kubectl -n app get events --sort-by=.lastTimestamp > results/task4/app_events.txt 2>&1 || true
+
+      - name: make down
+        if: always()
+        run: |
+          make down 2>&1 | tee results/task6/make_down.log
+          k3d cluster list | tee -a results/task6/make_down.log
+
+      - name: Commit results
+        if: always()
+        run: |
+          scripts/ci_commit.sh "Tasks 4/6/7: deployment, scaling, reliability and load-test results" results

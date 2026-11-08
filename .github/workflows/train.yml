@@ -1,0 +1,140 @@
+# Task 2: train the student (v1 and v2), publish the models as GitHub Release assets, store them
+# in SeaweedFS (models/v1/, models/v2/) and evaluate teacher-vs-base-vs-student on validation.jsonl.
+name: train-and-release
+
+on:
+  workflow_dispatch:
+    inputs:
+      replace_releases:
+        description: "replace existing model-v1 / model-v2 / model-base releases"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: train
+  cancel-in-progress: false
+
+env:
+  REPO_OWNER_ID: ${{ github.repository_owner_id }}
+  GH_TOKEN: ${{ github.token }}
+
+defaults:
+  run:
+    shell: bash   # -eo pipefail: a failing command before `| tee` fails the step
+
+jobs:
+  train:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned training dependencies (CPU PyTorch)
+        run: |
+          pip install -q -r training/requirements.txt
+          mkdir -p results/task2
+          { python --version; pip freeze; } > results/task2/training_environment.txt
+      - name: Check the training set against train.sha256
+        run: |
+          (cd datasets/v1 && sha256sum -c train.sha256) | tee results/task2/train_set_check.txt
+          wc -l datasets/v1/train.jsonl | tee -a results/task2/train_set_check.txt
+
+      - name: make train SUBSET=50 (smoke test)
+        run: make train SUBSET=50 2>&1 | tee results/task2/train_subset50.log
+      - name: make train (v1)
+        run: make train 2>&1 | tee results/task2/train_v1.log
+      - name: make train-v2 (v2 = one more epoch)
+        run: make train-v2 2>&1 | tee results/task2/train_v2.log
+      - name: Snapshot the untrained base model (for the comparison and the CI gate demo)
+        run: |
+          python - <<'EOF'
+          import json, os, sys, yaml
+          sys.path.insert(0, "training")
+          from train import write_checksums
+          from transformers import AutoModelForCausalLM, AutoTokenizer
+          cfg = yaml.safe_load(open("training/config.yaml"))
+          out = "artifacts/models/base"
+          tok = AutoTokenizer.from_pretrained(cfg["base_model"], revision=cfg["base_model_revision"])
+          AutoModelForCausalLM.from_pretrained(cfg["base_model"], revision=cfg["base_model_revision"]).save_pretrained(out)
+          tok.save_pretrained(out)
+          json.dump({"version": "base", "base_model": cfg["base_model"], "base_model_revision": cfg["base_model_revision"],
+                     "note": "untrained Pythia-70M, used as the deliberately bad model for the CI quality gate"},
+                    open(f"{out}/version.json", "w"), indent=2)
+          write_checksums(out)
+          EOF
+
+      - name: Package, checksum and copy model.sha256 / version.json into the repository
+        run: |
+          for v in v1 v2 base; do
+            d=artifacts/models/$v
+            # deterministic tarball (sorted names, fixed mtime/owner, gzip without timestamp)
+            tar --sort=name --mtime='2024-01-01 00:00Z' --owner=0 --group=0 --numeric-owner \
+                --exclude=model.sha256 -C "$d" -cf - . | gzip -n > "artifacts/cmdparser-$v.tar.gz"
+            (cd artifacts && sha256sum "cmdparser-$v.tar.gz") >> "$d/model.sha256"
+            mv "artifacts/cmdparser-$v.tar.gz" "$d/"
+            (cd "$d" && sha256sum -c model.sha256)
+            mkdir -p "models/$v"
+            cp "$d/model.sha256" "$d/version.json" "models/$v/"
+            echo "== $v"; cat "models/$v/model.sha256"
+          done | tee results/task2/model_checksums.txt
+
+      - name: Publish GitHub Releases model-v1, model-v2, model-base
+        run: |
+          for v in v1 v2 base; do
+            tag=model-$v
+            if gh release view "$tag" > /dev/null 2>&1; then
+              if [ "${{ inputs.replace_releases }}" != "true" ]; then echo "$tag exists, keeping it"; continue; fi
+              gh release delete "$tag" --yes --cleanup-tag
+            fi
+            notes=$(printf 'Student model %s for the command parser (Pythia-70M, sequence-level KD from phi3.5).\n\nVerify with: `sha256sum -c model.sha256`\n\n```json\n%s\n```\n' "$v" "$(cat artifacts/models/$v/version.json)")
+            gh release create "$tag" --target "$GITHUB_SHA" --title "Command parser model $v" --notes "$notes" \
+              artifacts/models/$v/*
+          done
+          gh release list | tee results/task2/releases.txt
+
+      - name: Evaluate teacher, untrained Pythia-70M and the students on validation.jsonl
+        run: |
+          python training/predict.py --model artifacts/models/base --output results/pythia_base_validation_predictions.jsonl
+          python training/predict.py --model artifacts/models/v1 --output results/student_v1_validation_predictions.jsonl
+          python training/predict.py --model artifacts/models/v2 --output results/student_v2_validation_predictions.jsonl
+          for m in pythia_base student_v1 student_v2; do
+            python tools/score.py results/${m}_validation_predictions.jsonl data/validation.jsonl \
+              --out results/${m}_validation.json > /dev/null
+          done
+          python - <<'EOF' | tee results/task2/comparison.md
+          import json
+          rows = [("Teacher phi3.5 (Ollama)", "results/teacher_validation.json"),
+                  ("Pythia-70M untrained", "results/pythia_base_validation.json"),
+                  ("Student v1", "results/student_v1_validation.json"),
+                  ("Student v2", "results/student_v2_validation.json")]
+          keys = ["json_validity", "intent_accuracy", "date_accuracy", "time_accuracy", "place_accuracy", "full_frame"]
+          print("| Model | " + " | ".join(keys) + " |")
+          print("|---" * (len(keys) + 1) + "|")
+          for name, path in rows:
+              try:
+                  r = json.load(open(path))
+                  print(f"| {name} | " + " | ".join(f"{r[k]:.1f}" for k in keys) + " |")
+              except FileNotFoundError:
+                  print(f"| {name} | " + " | ".join("n/a" for _ in keys) + " |")
+          EOF
+
+      - name: Store the models in SeaweedFS (models/v1/, models/v2/) from the Release
+        run: |
+          scripts/install_tools.sh
+          pip install -q --no-deps -r worker/requirements.txt
+          make cluster
+          make secrets
+          scripts/build_images.sh tools
+          SEED_MODELS=1 scripts/storage_up.sh 2>&1 | tee results/task2/models_to_object_storage.log
+          python scripts/s3_sync.py ls models | tee results/task2/models_bucket.txt
+          make down
+
+      - name: Commit results
+        run: |
+          scripts/ci_commit.sh "Train student v1/v2, publish releases, evaluate on validation" \
+            training/loss.csv training/loss_v2.csv models results
